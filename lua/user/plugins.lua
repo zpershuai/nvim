@@ -48,7 +48,7 @@ return packer.startup(function(use)
   use "numToStr/Comment.nvim" -- Easily comment stuff
   use "kyazdani42/nvim-web-devicons"
   use "kyazdani42/nvim-tree.lua"
-  --use "akinsho/bufferline.nvim"
+  use "akinsho/bufferline.nvim"
   use "moll/vim-bbye"
   use "nvim-lualine/lualine.nvim"
   use "akinsho/toggleterm.nvim"
@@ -101,10 +101,10 @@ return packer.startup(function(use)
   use "iamcco/markdown-preview.nvim"
   use "ThePrimeagen/git-worktree.nvim"
   use "nvim-pack/nvim-spectre"
-  use {
-    'romgrk/barbar.nvim',
-    requires = {'kyazdani42/nvim-web-devicons'}
-  }
+ -- use {
+ --   'romgrk/barbar.nvim',
+ --   requires = {'kyazdani42/nvim-web-devicons'}
+ -- }
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
