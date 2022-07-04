@@ -27,6 +27,9 @@ keymap("n", "<C-l>", "<C-w>l", opts)
 keymap("", "<C-g>", "<C-c>", opts)
 keymap("", "<C-a>", "<Home>", opts)
 keymap("", "<C-e>", "<End>", opts)
+--keymap("n", '<leader>->', ":BufferLineCloseRight", opts)
+--keymap("n", "<leader>-<", ":BufferLineCloseLeft", opts)
+keymap("n", "<leader><leader>", ":Telescope commands<CR>", opts)
 
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize -2<CR>", opts)
