@@ -126,12 +126,8 @@ local mappings = {
       "<cmd>split<CR>",
       "split window to bottom",
     },
-    q = {
-      "<cmd>q!<CR>",
-      "quit current window",
-    },
     c = {
-      "<cmd>BufferLinePickClose<CR>",
+      "<cmd>Bdelete<CR>",
       "close current window",
     },
     ["<lt>"] = {
@@ -151,7 +147,11 @@ local mappings = {
       "Search in current project",
     },
     s = {
-      "<cmd>Telescope current_buffer_fuzzy_find<CR>",
+      "<cmd>call Swoop()<CR>",
+      "Search in current buffer",
+    },
+    S = {
+      "<cmd>call SwoopSelection()<CR>",
       "Search in current buffer",
     },
     b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
@@ -178,6 +178,25 @@ local mappings = {
 
   g = {
     name = "Git",
+     g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
+     j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
+     k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
+     l = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame" },
+     p = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
+     r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
+     R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
+     s = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk" },
+     u = {
+       "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
+       "Undo Stage Hunk",
+     },
+     o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
+     b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
+     c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
+     d = {
+       "<cmd>Gitsigns diffthis HEAD<cr>",
+       "Diff",
+     },
   },
 
   c = {

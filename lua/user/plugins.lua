@@ -101,6 +101,7 @@ return packer.startup(function(use)
   use "iamcco/markdown-preview.nvim"
   use "ThePrimeagen/git-worktree.nvim"
   use "nvim-pack/nvim-spectre"
+  use "pelodelfuego/vim-swoop"
  -- use {
  --   'romgrk/barbar.nvim',
  --   requires = {'kyazdani42/nvim-web-devicons'}
