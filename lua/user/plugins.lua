@@ -102,6 +102,13 @@ return packer.startup(function(use)
   use "ThePrimeagen/git-worktree.nvim"
   use "nvim-pack/nvim-spectre"
   use "pelodelfuego/vim-swoop"
+  use {
+    'francoiscabrol/ranger.vim',
+    requires = {
+      'rbgrouleff/bclose.vim'
+    }
+  }
+  use "preservim/tagbar"
  -- use {
  --   'romgrk/barbar.nvim',
  --   requires = {'kyazdani42/nvim-web-devicons'}
