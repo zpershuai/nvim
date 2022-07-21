@@ -171,8 +171,8 @@ local mappings = {
     ["h"] = { "<cmd>Alpha<cr>", "Alpha" },
     ["p"] = { "<cmd>BufferLinePick<cr>", "Pick" },
     ["P"] = { "<cmd>BufferLineTogglePin<cr>", "Pin" },
-    ["i"] = { "<cmd>AerialToggle<cr>", "Function List" },
-    ["u"] = { "<cmd>AerialTreeToggle<cr>", "Function List Focus" },
+    ["i"] = { "<cmd>TagbarToggle<cr>", "Function List" },
+    ["u"] = { "<cmd>TagbarOpenAutoClose<cr>", "Function List Focus" },
     ["b"] = { "<cmd>Telescope buffers<cr>", "Buffers List" },
   },
 
@@ -198,11 +198,25 @@ local mappings = {
        "Diff",
      },
   },
+  d = {
+    name = "Directory",
+    d = {
+      "<cmd>Ranger<cr>",
+      "Enter current Dir",
+    },
+  },
 
   c = {
     name = "Code",
     f = {
       "<cmd>lua vim.lsp.buf.formatting()<cr>",
+      "Format",
+    },
+  },
+  C = {
+    name = "Configuration",
+    R = {
+      "<cmd>:source %<cr>",
       "Format",
     },
   },
