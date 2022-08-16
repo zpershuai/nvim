@@ -147,7 +147,7 @@ local mappings = {
 			"Search in current project",
 		},
 		s = {
-			"<cmd>call Swoop()<CR>",
+			"<cmd>Telescope current_buffer_fuzzy_find<CR>",
 			"Search in current buffer",
 		},
 		S = {

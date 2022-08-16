@@ -79,6 +79,7 @@ telescope.setup({
 				["<C-p>"] = actions.move_selection_previous,
 
 				["<C-c>"] = actions.close,
+				["<C-g>"] = actions.close,
 
 				["<Down>"] = actions.move_selection_next,
 				["<Up>"] = actions.move_selection_previous,
@@ -108,6 +109,9 @@ telescope.setup({
 				["<C-x>"] = actions.select_horizontal,
 				["<C-v>"] = actions.select_vertical,
 				["<C-t>"] = actions.select_tab,
+				
+                ["<C-c>"] = actions.close,
+				["<C-g>"] = actions.close,
 
 				["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
 				["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
@@ -136,6 +140,14 @@ telescope.setup({
 		},
 	},
 	pickers = {
+        current_buffer_fuzzy_find = {
+            theme = "ivy",
+            previewer = false,
+        },
+        live_grep_args = {
+            theme = "ivy",
+            previewer = false,
+        },
 		-- Default configuration for builtin pickers goes here:
 		-- picker_name = {
 		--   picker_config_key = value,
