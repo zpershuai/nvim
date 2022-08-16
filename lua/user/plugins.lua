@@ -83,7 +83,14 @@ return packer.startup(function(use)
 
 	-- Telescope
 	use("nvim-telescope/telescope.nvim")
+    use {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        run = "make",
+    }
 	use("nvim-telescope/telescope-project.nvim")
+	use("nvim-telescope/telescope-live-grep-args.nvim")
+    use("MattesGroeger/vim-bookmarks") 
+    use("tom-anders/telescope-vim-bookmarks.nvim") 
 
 	-- Treesitter
 	use({
@@ -109,6 +116,8 @@ return packer.startup(function(use)
 		},
 	})
 	use("preservim/tagbar")
+    use("sirutBuasai/molokai.nvim")
+    use("jackm245/nordark.nvim")
 	-- use {
 	--   'romgrk/barbar.nvim',
 	--   requires = {'kyazdani42/nvim-web-devicons'}
