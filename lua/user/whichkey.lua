@@ -151,7 +151,7 @@ local mappings = {
 			"Search in current buffer",
 		},
 		S = {
-			"<cmd>call SwoopSelection()<CR>",
+			"<cmd>Telescope grep_string<CR>",
 			"Search in current buffer",
 		},
 		b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
@@ -217,7 +217,7 @@ local mappings = {
 		name = "Configuration",
 		R = {
 			"<cmd>:source %<cr>",
-			"Format",
+			"Reconfig",
 		},
 	},
 

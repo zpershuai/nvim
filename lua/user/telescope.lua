@@ -148,6 +148,10 @@ telescope.setup({
             theme = "ivy",
             previewer = false,
         },
+        grep_string = {
+            theme = "ivy",
+            previewer = false,
+        },
 		-- Default configuration for builtin pickers goes here:
 		-- picker_name = {
 		--   picker_config_key = value,
