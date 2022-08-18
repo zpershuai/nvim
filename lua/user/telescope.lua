@@ -1,3 +1,9 @@
+require("telescope.themes").get_custom = function(opts)
+  opts = vim.tbl_deep_extend("force",{layout_config={height=15}},opts)
+  return require("telescope.themes").get_ivy(opts)
+end
+
+local ivy_theme = require('telescope.themes').get_ivy {}
 require("telescope").load_extension("project")
 
 vim.cmd([[autocmd User TelescopePreviewerLoaded setlocal number]])
@@ -34,7 +40,7 @@ telescope.setup({
 
 		layout_defaults = {
 			bottom_pane = {
-				height = 25,
+				height = 15,
 				preview_cutoff = 120,
 				prompt_position = "top",
 			},
@@ -150,6 +156,9 @@ telescope.setup({
         },
         grep_string = {
             theme = "ivy",
+        },
+        oldfiles = {
+            theme = "custom",
             previewer = false,
         },
 		-- Default configuration for builtin pickers goes here:
