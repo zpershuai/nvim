@@ -127,6 +127,8 @@ return packer.startup(function(use)
     })
     use("vim-scripts/copypath.vim")
     use { "nvim-telescope/telescope-file-browser.nvim" }
+    use("tpope/vim-fugitive")
+
     -- use {
     --   'romgrk/barbar.nvim',
     --   requires = {'kyazdani42/nvim-web-devicons'}
