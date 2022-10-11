@@ -149,17 +149,21 @@ telescope.setup({
         current_buffer_fuzzy_find = {
             theme = "ivy",
             previewer = false,
+            path_display = { "absolute" },
         },
         live_grep_args = {
             theme = "ivy",
             previewer = false,
+            path_display = { "absolute" },
         },
         grep_string = {
             theme = "ivy",
+            path_display = { "absolute" },
         },
         oldfiles = {
             theme = "custom",
             previewer = false,
+            path_display = { "absolute" },
         },
         -- Default configuration for builtin pickers goes here:
         -- picker_name = {
