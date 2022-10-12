@@ -83,7 +83,7 @@ local mappings = {
     f = {
         name = "Files",
         f = {
-            "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_custom{previewer = false})<cr>",
+            "<cmd>Telescope find_files<cr>",
             "Find files",
         },
         s = {
