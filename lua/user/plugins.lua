@@ -116,7 +116,7 @@ return packer.startup(function(use)
         },
     })
     use("preservim/tagbar")
-    use("sirutBuasai/molokai.nvim")
+    use("UtkarshVerma/molokai.nvim")
     use("jackm245/nordark.nvim")
     use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
     use({
