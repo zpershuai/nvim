@@ -212,6 +212,10 @@ local mappings = {
             "<cmd>Telescope file_browser path=%:p:h<cr>",
             "Enter current Dir",
         },
+        D = {
+            "<cmd>Telescope file_browser<cr>",
+            "Enter current Project",
+        },
     },
 
     c = {
