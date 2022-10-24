@@ -4,8 +4,6 @@ require("telescope.themes").get_custom = function(opts)
 end
 
 local ivy_theme = require('telescope.themes').get_ivy {}
-require("telescope").load_extension("project")
-require("telescope").load_extension("file_browser")
 vim.cmd([[autocmd User TelescopePreviewerLoaded setlocal number]])
 
 local status_ok, telescope = pcall(require, "telescope")
@@ -84,7 +82,7 @@ telescope.setup({
                 ["<C-n>"] = actions.move_selection_next,
                 ["<C-p>"] = actions.move_selection_previous,
 
-                ["<C-c>"] = actions.close,
+                --[[ ["<C-c>"] = actions.close, ]]
                 ["<C-g>"] = actions.close,
 
                 ["<Down>"] = actions.move_selection_next,
@@ -116,7 +114,7 @@ telescope.setup({
                 ["<C-v>"] = actions.select_vertical,
                 ["<C-t>"] = actions.select_tab,
 
-                ["<C-c>"] = actions.close,
+                --[[ ["<C-c>"] = actions.close, ]]
                 ["<C-g>"] = actions.close,
 
                 ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
@@ -185,17 +183,38 @@ telescope.setup({
         -- }
         -- please take a look at the readme of the extension you want to configure
         file_browser = {
-            theme = "custom",
+            --[[ theme = "custom", ]]
             -- disables netrw and use telescope-file-browser in its place
             hijack_netrw = true,
             mappings = {
                 ["i"] = {
                     -- your custom insert mode mappings
+                    ["<C-b>"] = require "telescope".extensions.file_browser.actions.goto_home_dir,
+                    ["<C-c>"] = require "telescope".extensions.file_browser.actions.create,
+                    ["<C-h>"] = require "telescope".extensions.file_browser.actions.goto_parent_dir,
+                    ["<C-l>"] = require "telescope".extensions.file_browser.actions.goto_cwd,
+                    ["<C-d>"] = require "telescope".extensions.file_browser.actions.remove,
+                    ["<C-r>"] = require "telescope".extensions.file_browser.actions.rename,
+                    ["<C-z>"] = require "telescope".extensions.file_browser.actions.toggle_hidden,
+                    ["<C-y>"] = require "telescope".extensions.file_browser.actions.copy,
+                    ["<C-m>"] = require "telescope".extensions.file_browser.actions.move
                 },
                 ["n"] = {
                     -- your custom normal mode mappings
+                    ["b"] = require "telescope".extensions.file_browser.actions.goto_home_dir,
+                    ["c"] = require "telescope".extensions.file_browser.actions.create,
+                    ["h"] = require "telescope".extensions.file_browser.actions.goto_parent_dir,
+                    ["l"] = require "telescope".extensions.file_browser.actions.goto_cwd,
+                    ["d"] = require "telescope".extensions.file_browser.actions.remove,
+                    ["r"] = require "telescope".extensions.file_browser.actions.rename,
+                    ["z"] = require "telescope".extensions.file_browser.actions.toggle_hidden,
+                    ["y"] = require "telescope".extensions.file_browser.actions.copy,
+                    ["m"] = require "telescope".extensions.file_browser.actions.move
                 },
             },
         },
     },
 })
+
+require("telescope").load_extension("project")
+require("telescope").load_extension("file_browser")

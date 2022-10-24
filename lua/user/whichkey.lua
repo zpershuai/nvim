@@ -209,7 +209,7 @@ local mappings = {
     d = {
         name = "Directory",
         d = {
-            "<cmd>Ranger<cr>",
+            "<cmd>Telescope file_browser path=%:p:h<cr>",
             "Enter current Dir",
         },
     },
@@ -243,7 +243,7 @@ local mappings = {
 
     p = {
         name = "Projects",
-        p = { "<cmd>Telescope projects<cr>", "Find project" },
+        p = { "<cmd>Telescope project<cr>", "Find project" },
     },
 
     P = {
