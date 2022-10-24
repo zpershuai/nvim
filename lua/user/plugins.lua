@@ -114,12 +114,6 @@ return packer.startup(function(use)
     use("ThePrimeagen/git-worktree.nvim")
     use("nvim-pack/nvim-spectre")
     use("pelodelfuego/vim-swoop")
-    use({
-        "francoiscabrol/ranger.vim",
-        requires = {
-            "rbgrouleff/bclose.vim",
-        },
-    })
     use("preservim/tagbar")
     use("UtkarshVerma/molokai.nvim")
     use("jackm245/nordark.nvim")
