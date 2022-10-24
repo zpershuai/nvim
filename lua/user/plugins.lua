@@ -52,7 +52,7 @@ return packer.startup(function(use)
     use("moll/vim-bbye")
     use("nvim-lualine/lualine.nvim")
     use("akinsho/toggleterm.nvim")
-    use("ahmedkhalf/project.nvim")
+    --[[ use("ahmedkhalf/project.nvim") ]]
     use("lewis6991/impatient.nvim")
     use("lukas-reineke/indent-blankline.nvim")
     use("goolord/alpha-nvim")
@@ -89,8 +89,13 @@ return packer.startup(function(use)
     }
     use("nvim-telescope/telescope-project.nvim")
     use("nvim-telescope/telescope-live-grep-args.nvim")
+    use("nvim-telescope/telescope-file-browser.nvim")
     use("MattesGroeger/vim-bookmarks")
     use("tom-anders/telescope-vim-bookmarks.nvim")
+    use {
+        'notjedi/nvim-rooter.lua',
+    }
+    -- end Telescope
 
     -- Treesitter
     use({
@@ -126,7 +131,6 @@ return packer.startup(function(use)
         },
     })
     use("vim-scripts/copypath.vim")
-    use { "nvim-telescope/telescope-file-browser.nvim" }
     use("tpope/vim-fugitive")
 
     -- use {
