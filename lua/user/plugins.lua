@@ -92,6 +92,7 @@ return packer.startup(function(use)
     use("nvim-telescope/telescope-file-browser.nvim")
     use("MattesGroeger/vim-bookmarks")
     use("tom-anders/telescope-vim-bookmarks.nvim")
+    use("kelly-lin/telescope-ag")
     use {
         'notjedi/nvim-rooter.lua',
     }
@@ -107,7 +108,7 @@ return packer.startup(function(use)
     -- Git
     use("lewis6991/gitsigns.nvim")
 
-    use("stevearc/aerial.nvim")
+    use { "stevearc/aerial.nvim", branch = "nvim-0.5" }
     use("vijaymarupudi/nvim-fzf")
     use("editorconfig/editorconfig-vim")
     use("iamcco/markdown-preview.nvim")

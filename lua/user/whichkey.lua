@@ -248,6 +248,8 @@ local mappings = {
     p = {
         name = "Projects",
         p = { "<cmd>Telescope project<cr>", "Find project" },
+        a = { "<cmd>lua project_add_cwd()<cr>", "add project" },
+        A = { "<cmd>lua project_add_cwd(vim.loop.cwd())<cr>", "add current pwd" },
     },
 
     P = {
