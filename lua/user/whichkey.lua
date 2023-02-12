@@ -180,6 +180,15 @@ local mappings = {
         ["b"] = { "<cmd>Telescope buffers<cr>", "Buffers List" },
     },
 
+    B = {
+        name = "Bookmarks",
+        ["a"] = {"<cmd>BookmarkToggle<cr>", "Bookmarks Add"},
+        ["d"] = {"<cmd>BookmarkClear<cr>", "Bookmarks Delete"},
+        ["A"] = {"<cmd>Telescope vim_bookmarks all<cr>", "Show All Bookmarks"},
+        ["c"] = {"<cmd>Telescope vim_bookmarks current_file<cr>", "Show current file Bookmarks"},
+        ["D"] = {"<cmd>BookmarkClearAll <cr>", "Delete All Bookmarks"},
+    },
+
     g = {
         name = "Git",
         g = { "<cmd>Neogit<CR>", "Neogit" },

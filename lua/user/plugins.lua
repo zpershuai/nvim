@@ -127,6 +127,8 @@ return packer.startup(function(use)
     })
     use("vim-scripts/copypath.vim")
     use("tpope/vim-fugitive")
+    use("Mofiqul/vscode.nvim")
+    use("aserowy/tmux.nvim")
 
     -- use {
     --   'romgrk/barbar.nvim',

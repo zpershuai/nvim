@@ -227,6 +227,8 @@ require("telescope").load_extension("project")
 require("telescope").load_extension("file_browser")
 require('telescope').load_extension('fzf')
 require('telescope').load_extension('ag')
+require('telescope').load_extension('vim_bookmarks')
+
 
 local _utils = require("telescope._extensions.project.utils")
 local _git = require("telescope._extensions.project.git")
@@ -253,3 +255,17 @@ _G.project_add_cwd = function(arg)
     io.close(file)
     print('Project added: ' .. path)
 end
+
+
+local bookmark_actions = require('telescope').extensions.vim_bookmarks.actions
+
+function _G.TelBookmarks()
+  require('telescope').extensions.vim_bookmarks.all {
+    attach_mappings = function(_, map)
+      map('i', '<C-x>', bookmark_actions.delete_selected_or_at_cursor)
+      map('n', 'dd', bookmark_actions.delete_selected_or_at_cursor)
+      return true
+    end
+  }
+end
+

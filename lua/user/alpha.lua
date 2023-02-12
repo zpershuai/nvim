@@ -14,10 +14,10 @@ dashboard.section.header.val = {
 }
 dashboard.section.buttons.val = {
 	dashboard.button("f-f", "  Find file", ":Telescope find_files <CR>"),
-	dashboard.button("f-e", "  New file", ":ene <BAR> startinsert <CR>"),
+	dashboard.button("f-n", "  New file", ":ene <BAR> startinsert <CR>"),
+	dashboard.button("f-e", "  Configuration", ":e ~/.config/nvim/init.lua <CR>"),
 	dashboard.button("p-p", "  Find project", ":Telescope projects <CR>"),
 	dashboard.button("f-r", "  Recently used files", ":Telescope oldfiles <CR>"),
-	dashboard.button("f-c", "  Configuration", ":e ~/.config/nvim/init.lua <CR>"),
 	dashboard.button("q-q", "  Quit Neovim", ":qa<CR>"),
 }
 
