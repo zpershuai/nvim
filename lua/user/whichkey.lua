@@ -111,7 +111,7 @@ local mappings = {
             "<cmd>enew<cr>",
             "New file",
         },
-        e = {
+        c = {
             "<cmd>e ~/.config/nvim/init.lua<cr>",
             "Configuration",
         },
@@ -289,6 +289,7 @@ local mappings = {
         e = { "<cmd>lua vim.diagnostic.open_float()<CR>", "Show error" },
         n = { "<cmd>lua vim.diagnostic.goto_next()<CR>", "Show next error" },
         p = { "<cmd>lua vim.diagnostic.goto_prev()<CR>", "Show prev error" },
+        A = { "<cmd>lua vim.diagnostic.setloclist()<CR>", "Show All error" },
     },
     ["1"] = { "<cmd>BufferLineGoToBuffer 1<cr>", "Window 1" },
     ["2"] = { "<cmd>BufferLineGoToBuffer 2<cr>", "Window 2" },
