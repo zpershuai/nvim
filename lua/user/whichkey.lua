@@ -131,15 +131,19 @@ local mappings = {
             "split window to bottom",
         },
         c = {
-            "<cmd>Bdelete<CR>",
+            "<cmd>BufferClose<CR>",
             "close current window",
         },
+        p = {
+            "<cmd>BufferCloseAllButPinned<CR>",
+            "close all but pinned window",
+        },
         ["<lt>"] = {
-            "<cmd>BufferLineCloseLeft<CR>",
+            "<cmd>BufferCloseBuffersLeft<CR>",
             "close left windows",
         },
         [">"] = {
-            "<cmd>BufferLineCloseRight<CR>",
+            "<cmd>BufferCloseBuffersRight<CR>",
             "close right windows",
         },
     },
@@ -170,11 +174,11 @@ local mappings = {
 
     b = {
         name = "Buffers",
-        [">"] = { "<cmd>BufferLineMoveNext<cr>", "Buffer MoveNext" },
-        ["<lt>"] = { "<cmd>BufferLineMovePrev<cr>", "Buffer MovePrevious" },
+        [">"] = { "<cmd>BufferMoveNext<cr>", "Buffer MoveNext" },
+        ["<lt>"] = { "<cmd>BufferMovePrev<cr>", "Buffer MovePrevious" },
         ["h"] = { "<cmd>Alpha<cr>", "Alpha" },
-        ["p"] = { "<cmd>BufferLinePick<cr>", "Pick" },
-        ["P"] = { "<cmd>BufferLineTogglePin<cr>", "Pin" },
+        ["p"] = { "<cmd>BufferPick<cr>", "Pick" },
+        ["P"] = { "<cmd>BufferPin<cr>", "Pin" },
         ["i"] = { "<cmd>TagbarToggle<cr>", "Function List" },
         ["u"] = { "<cmd>TagbarOpenAutoClose<cr>", "Function List Focus" },
         ["b"] = { "<cmd>Telescope buffers<cr>", "Buffers List" },
@@ -291,15 +295,15 @@ local mappings = {
         p = { "<cmd>lua vim.diagnostic.goto_prev()<CR>", "Show prev error" },
         A = { "<cmd>lua vim.diagnostic.setloclist()<CR>", "Show All error" },
     },
-    ["1"] = { "<cmd>BufferLineGoToBuffer 1<cr>", "Window 1" },
-    ["2"] = { "<cmd>BufferLineGoToBuffer 2<cr>", "Window 2" },
-    ["3"] = { "<cmd>BufferLineGoToBuffer 3<cr>", "Window 3" },
-    ["4"] = { "<cmd>BufferLineGoToBuffer 4<cr>", "Window 4" },
-    ["5"] = { "<cmd>BufferLineGoToBuffer 5<cr>", "Window 5" },
-    ["6"] = { "<cmd>BufferLineGoToBuffer 6<cr>", "Window 6" },
-    ["7"] = { "<cmd>BufferLineGoToBuffer 7<cr>", "Window 7" },
-    ["8"] = { "<cmd>BufferLineGoToBuffer 8<cr>", "Window 8" },
-    ["9"] = { "<cmd>BufferLineGoToBuffer 9<cr>", "Window 9" },
+    ["1"] = { "<cmd>BufferGoto 1<cr>", "Window 1" },
+    ["2"] = { "<cmd>BufferGoto 2<cr>", "Window 2" },
+    ["3"] = { "<cmd>BufferGoto 3<cr>", "Window 3" },
+    ["4"] = { "<cmd>BufferGoto 4<cr>", "Window 4" },
+    ["5"] = { "<cmd>BufferGoto 5<cr>", "Window 5" },
+    ["6"] = { "<cmd>BufferGoto 6<cr>", "Window 6" },
+    ["7"] = { "<cmd>BufferGoto 7<cr>", "Window 7" },
+    ["8"] = { "<cmd>BufferGoto 8<cr>", "Window 8" },
+    ["9"] = { "<cmd>BufferGoto 9<cr>", "Window 9" },
 }
 
 -- local mappings = {

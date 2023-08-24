@@ -2,7 +2,10 @@
 require("aerial").setup({
 	-- Priority list of preferred backends for aerial.
 	-- This can be a filetype map (see :help aerial-filetype-map)
-	backends = { "treesitter", "lua", "lsp", "markdown" },
+	backends = { 
+        --[[ ['_']  = {"treesitter"}, ]]
+        --[[ "treesitter", "lua", "lsp", "markdown"  ]]
+    },
 
 	-- Enum: persist, close, auto, global
 	--   persist - aerial window will stay open until closed
