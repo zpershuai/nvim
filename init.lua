@@ -10,7 +10,7 @@ require "user.autopairs"
 require "user.comment"
 require "user.gitsigns"
 require "user.nvim-tree"
-require "user.bufferline"
+--[[ require "user.bufferline" ]]
 require "user.lualine"
 require "user.toggleterm"
 --[[ require "user.project" ]]
@@ -28,3 +28,4 @@ require "user.tmux"
 require "user.diffview"
 --require "user.trouble"
 --require "user.airline"
+require "user.barbar"
