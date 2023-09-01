@@ -183,7 +183,7 @@ telescope.setup({
         -- }
         -- please take a look at the readme of the extension you want to configure
         file_browser = {
-            --[[ theme = "custom", ]]
+            theme = "custom",
             -- disables netrw and use telescope-file-browser in its place
             hijack_netrw = true,
             mappings = {
@@ -219,6 +219,11 @@ telescope.setup({
             override_file_sorter = true, -- override the file sorter
             case_mode = "smart_case", -- or "ignore_case" or "respect_case"
             -- the default case_mode is "smart_case"
+        },
+        project = {
+            theme = "ivy",
+            --[[ previewer = false, ]]
+            --[[ path_display = { "absolute" }, ]]
         },
     },
 })
