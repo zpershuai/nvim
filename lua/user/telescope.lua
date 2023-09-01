@@ -221,7 +221,7 @@ telescope.setup({
             -- the default case_mode is "smart_case"
         },
         project = {
-            theme = "ivy",
+            theme = "dropdown",
             --[[ previewer = false, ]]
             --[[ path_display = { "absolute" }, ]]
         },
