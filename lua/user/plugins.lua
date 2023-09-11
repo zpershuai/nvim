@@ -108,14 +108,13 @@ return packer.startup(function(use)
     -- Git
     use("lewis6991/gitsigns.nvim")
 
-    use { "stevearc/aerial.nvim", branch = "nvim-0.5" }
+    use {"stevearc/aerial.nvim" }
     use("vijaymarupudi/nvim-fzf")
     use("editorconfig/editorconfig-vim")
     use("iamcco/markdown-preview.nvim")
     use("ThePrimeagen/git-worktree.nvim")
     use("nvim-pack/nvim-spectre")
     use("pelodelfuego/vim-swoop")
-    use("preservim/tagbar")
     use("UtkarshVerma/molokai.nvim")
     use("jackm245/nordark.nvim")
     use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }

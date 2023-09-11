@@ -21,7 +21,7 @@ require "user.whichkey"
 require "user.autocommands"
 require "user.aerial"
 require "user.spectre"
-require "user.tagbar"
+--[[ require "user.tagbar" ]]
 require "user.neogit"
 require "user.nvim-root"
 require "user.tmux"
