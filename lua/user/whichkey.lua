@@ -179,8 +179,7 @@ local mappings = {
         ["h"] = { "<cmd>Alpha<cr>", "Alpha" },
         ["p"] = { "<cmd>BufferPick<cr>", "Pick" },
         ["P"] = { "<cmd>BufferPin<cr>", "Pin" },
-        ["i"] = { "<cmd>AerialOpen<cr>", "Function List" },
-        ["u"] = { "<cmd>AerialClose<cr>", "Function List Focus" },
+        ["i"] = { "<cmd>AerialToggle<cr>", "Function List" },
         ["b"] = { "<cmd>Telescope buffers<cr>", "Buffers List" },
     },
 
