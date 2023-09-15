@@ -145,7 +145,10 @@ telescope.setup({
     },
     pickers = {
         current_buffer_fuzzy_find = {
-            theme = "ivy",
+            tiebreak = function (a, b)
+                return a.lnum < b.lnum
+            end,
+            theme = "custom",
             previewer = false,
             path_display = { "absolute" },
         },
