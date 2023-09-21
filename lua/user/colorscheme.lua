@@ -1,6 +1,6 @@
 vim.cmd([[
 try
-  colorscheme vscode
+  colorscheme molokai
 catch /^Vim\%((\a\+)\)\=:E185/
   colorscheme default
   set background=dark
