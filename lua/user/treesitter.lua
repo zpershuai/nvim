@@ -17,10 +17,15 @@ configs.setup({
         additional_vim_regex_highlighting = true,
     },
     indent = { enable = true, disable = { "yaml" } },
-    context_commentstring = {
-        enable = true,
-        enable_autocmd = false,
-    },
+    --[[ context_commentstring = { ]]
+    --[[     enable = true, ]]
+    --[[     enable_autocmd = false, ]]
+    --[[ }, ]]
+})
+
+require('ts_context_commentstring').setup({
+    enable = true,
+    enable_autocmd = false,
 })
 
 vim.g.skip_ts_context_commentstring_module = true
