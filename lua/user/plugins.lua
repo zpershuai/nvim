@@ -107,5 +107,5 @@ require("lazy").setup({
   "aserowy/tmux.nvim",
   
   "romgrk/barbar.nvim",
-
+  "dstein64/vim-startuptime",
 })
