@@ -31,4 +31,7 @@ require("lazy").setup("user.plugins",{
     },
   },
   debug = false,
+  change_detection = {
+    notify = false,
+  },
 })
