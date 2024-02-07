@@ -24,13 +24,19 @@ return {
   "lunarvim/darkplus.nvim",
   
   -- cmp plugins
-  "hrsh7th/nvim-cmp", -- The completion plugin
-  "hrsh7th/cmp-buffer", -- buffer completions
-  "hrsh7th/cmp-path", -- path completions
-  "hrsh7th/cmp-cmdline", -- cmdline completions
-  "saadparwaiz1/cmp_luasnip", -- snippet completions
-  "hrsh7th/cmp-nvim-lsp",
-  
+ -- Install nvim-cmp, and buffer source as a dependency
+  {
+    "hrsh7th/nvim-cmp",
+    event = { "InsertEnter", "CmdlineEnter" },
+    dependencies = {
+      "hrsh7th/cmp-nvim-lsp",
+      "saadparwaiz1/cmp_luasnip",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-cmdline",
+    },
+  },
+
   -- snippets
   "L3MON4D3/LuaSnip", --snippet engine
   "rafamadriz/friendly-snippets", -- a bunch of snippets to use
@@ -60,7 +66,6 @@ return {
     build = ":TSUpdate",
   },
   "JoosepAlviste/nvim-ts-context-commentstring",
-
 
   -- Git
   "lewis6991/gitsigns.nvim",
@@ -93,4 +98,10 @@ return {
   
   "romgrk/barbar.nvim",
   "dstein64/vim-startuptime",
+  {
+    "X3eRo0/dired.nvim",
+    dependencies = {
+        "MunifTanjim/nui.nvim",
+    },
+  },
 }

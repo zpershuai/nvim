@@ -2,7 +2,6 @@ require "user.options"
 require "user.keymaps"
 require "user.lazy"
 
-
 require "user.colorscheme"
 require "user.cmp"
 require "user.lsp"
@@ -32,3 +31,4 @@ require "user.diffview"
 --require "user.trouble"
 --require "user.airline"
 require "user.barbar"
+require "user.dired"
