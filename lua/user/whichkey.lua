@@ -248,7 +248,7 @@ local mappings = {
     q = {
         name = "Quit",
         q = {
-            "<cmd>Bdelete<CR>",
+            "<cmd>BufferClose<CR>",
             "quit current buffer",
         },
         Q = {
