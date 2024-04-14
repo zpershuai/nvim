@@ -4,6 +4,18 @@ if not status then
 	return
 end
 
+local function clang_format()
+	return {
+		exe = "clang-format",
+		args = {
+			"--style=file:$HOME/.config/nvim/lua/user/formatter/google-style.clang-format --assume-filename",
+			vim.api.nvim_buf_get_name(0),
+		},
+		stdin = true,
+		cwd = vim.fn.expand("%:p:h"),
+	}
+end
+
 formatter.setup({
 	filetype = {
 		lua = {
@@ -40,6 +52,17 @@ formatter.setup({
 				}
 			end,
 		},
+		markdown = {
+			function()
+				return {
+					exe = "prettier",
+					args = { "--parser", "markdown" },
+					stdin = true,
+				}
+			end,
+		},
+		c = { clang_format },
+		cpp = { clang_format },
 	},
 })
 
@@ -48,7 +71,7 @@ vim.api.nvim_exec(
 	[[
 augroup FormatAutogroup
   autocmd!
-  autocmd BufWritePost *.js,*.rs,*.lua FormatWrite
+  autocmd BufWritePost *.js,*.rs,*.lua,*.md,*.MD,*.c,*.h,*.cpp,*.hpp,*.cc FormatWrite
 augroup END
 ]],
 	true

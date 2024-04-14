@@ -233,7 +233,7 @@ local mappings = {
 	c = {
 		name = "Code",
 		f = {
-			"<cmd>lua vim.lsp.buf.formatting()<cr>",
+			"<cmd>FormatWrite<cr>",
 			"Format",
 		},
 	},
