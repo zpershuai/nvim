@@ -7,9 +7,9 @@ local lspconfig = require("lspconfig")
 
 local servers = { "jsonls", "clangd", "rust_analyzer" }
 
-lsp_installer.setup {
-	ensure_installed = servers
-}
+lsp_installer.setup({
+	ensure_installed = servers,
+})
 
 for _, server in pairs(servers) do
 	local opts = {
@@ -18,42 +18,41 @@ for _, server in pairs(servers) do
 	}
 	local has_custom_opts, server_custom_opts = pcall(require, "user.lsp.settings." .. server)
 	if has_custom_opts then
-	 	opts = vim.tbl_deep_extend("force", server_custom_opts, opts)
+		opts = vim.tbl_deep_extend("force", server_custom_opts, opts)
 	end
 	lspconfig[server].setup(opts)
 end
 
-
 lspconfig.lua_ls.setup({
-  -- disable formatting with `lua_ls` because using `stylua` in `null_ls`
-  on_attach = function(client, _)
-    client.server_capabilities.document_formatting = false
-    client.server_capabilities.document_range_formatting = false
-  end,
+	-- disable formatting with `lua_ls` because using `stylua` in `null_ls`
+	on_attach = function(client, _)
+		client.server_capabilities.document_formatting = false
+		client.server_capabilities.document_range_formatting = false
+	end,
 
-  root_dir = root_dir,
-  capabilities = capabilities,
-  settings = {
-    Lua = {
-      format = {
-        enable = false,
-      },
-      runtime = {
-        version = "LuaJIT",
-        -- Setup your lua path
-        -- path = runtime_path,
-      },
-      diagnostics = {
-        -- Get the language server to recognize the `vim` global
-        globals = { "vim", "P" },
-      },
-      -- workspace = {
-      --   -- Make the server aware of Neovim runtime files
-      --   library = vim.api.nvim_get_runtime_file("", true),
-      -- },
-      telemetry = {
-        enable = false,
-      },
-    },
-    },
+	root_dir = root_dir,
+	capabilities = capabilities,
+	settings = {
+		Lua = {
+			format = {
+				enable = false,
+			},
+			runtime = {
+				version = "LuaJIT",
+				-- Setup your lua path
+				-- path = runtime_path,
+			},
+			diagnostics = {
+				-- Get the language server to recognize the `vim` global
+				globals = { "vim", "P" },
+			},
+			-- workspace = {
+			--   -- Make the server aware of Neovim runtime files
+			--   library = vim.api.nvim_get_runtime_file("", true),
+			-- },
+			telemetry = {
+				enable = false,
+			},
+		},
+	},
 })

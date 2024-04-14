@@ -5,7 +5,7 @@ require("spectre").setup({
 	live_update = false, -- auto excute search again when you write any file in vim
 	line_sep_start = "┌-----------------------------------------",
 	result_padding = "¦  ",
-	line_sep       = "└-----------------------------------------",
+	line_sep = "└-----------------------------------------",
 	highlight = {
 		ui = "String",
 		search = "DiffChange",
@@ -137,5 +137,5 @@ require("spectre").setup({
 	},
 	replace_vim_cmd = "cdo",
 	is_open_target_win = true, --open file on opener window
-	is_insert_mode = false,  -- start open panel on is_insert_mode
+	is_insert_mode = false, -- start open panel on is_insert_mode
 })

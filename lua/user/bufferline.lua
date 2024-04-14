@@ -15,10 +15,10 @@ bufferline.setup({
 		-- and so changing this is NOT recommended, this is intended
 		-- as an escape hatch for people who cannot bear it for whatever reason
 		--[[ indicator_icon = "▎", ]]
-            indicator = {
-                icon = '▎', -- this should be omitted if indicator style is not 'icon'
-                style = 'icon',
-            },
+		indicator = {
+			icon = "▎", -- this should be omitted if indicator style is not 'icon'
+			style = "icon",
+		},
 		buffer_close_icon = "",
 		-- buffer_close_icon = '',
 		modified_icon = "●",
@@ -126,17 +126,17 @@ bufferline.setup({
 		duplicate_selected = {
 			fg = { attribute = "fg", highlight = "TabLineSel" },
 			bg = { attribute = "bg", highlight = "TabLineSel" },
-            italic = true,
+			italic = true,
 		},
 		duplicate_visible = {
 			fg = { attribute = "fg", highlight = "TabLine" },
 			bg = { attribute = "bg", highlight = "TabLine" },
-            italic = true,
+			italic = true,
 		},
 		duplicate = {
 			fg = { attribute = "fg", highlight = "TabLine" },
 			bg = { attribute = "bg", highlight = "TabLine" },
-            italic = true,
+			italic = true,
 		},
 
 		modified = {
