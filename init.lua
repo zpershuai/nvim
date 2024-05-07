@@ -34,3 +34,5 @@ require("user.barbar")
 require("user.dired")
 
 require("user.formatter")
+
+require("user.leetcode")
