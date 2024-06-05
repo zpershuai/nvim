@@ -42,7 +42,7 @@ nvim_tree.setup({ -- BEGIN_DEFAULT_OPTS
 	sort = {
 		sorter = "name",
 		folders_first = true,
-		files_first = false,
+		--[[ files_first = false, ]]
 	},
 	view = {
 		centralize_selection = false,
@@ -77,7 +77,7 @@ nvim_tree.setup({ -- BEGIN_DEFAULT_OPTS
 		special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md" },
 		symlink_destination = true,
 		highlight_git = false,
-		highlight_diagnostics = false,
+		--[[ highlight_diagnostics = false, ]]
 		highlight_opened_files = "none",
 		highlight_modified = "none",
 		indent_markers = {
@@ -92,18 +92,18 @@ nvim_tree.setup({ -- BEGIN_DEFAULT_OPTS
 			},
 		},
 		icons = {
-			web_devicons = {
-				file = {
-					enable = true,
-					color = true,
-				},
-				folder = {
-					enable = false,
-					color = true,
-				},
-			},
+			--[[ web_devicons = { ]]
+			--[[ 	file = { ]]
+			--[[ 		enable = true, ]]
+			--[[ 		color = true, ]]
+			--[[ 	}, ]]
+			--[[ 	folder = { ]]
+			--[[ 		enable = false, ]]
+			--[[ 		color = true, ]]
+			--[[ 	}, ]]
+			--[[ }, ]]
 			git_placement = "before",
-			diagnostics_placement = "signcolumn",
+			--[[ diagnostics_placement = "signcolumn", ]]
 			modified_placement = "after",
 			padding = " ",
 			symlink_arrow = " ➛ ",
@@ -112,7 +112,7 @@ nvim_tree.setup({ -- BEGIN_DEFAULT_OPTS
 				folder = true,
 				folder_arrow = true,
 				git = true,
-				diagnostics = true,
+				--[[ diagnostics = true, ]]
 				modified = true,
 			},
 			glyphs = {

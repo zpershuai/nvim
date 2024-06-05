@@ -5,7 +5,7 @@ end
 
 local lspconfig = require("lspconfig")
 
-local servers = { "jsonls", "clangd", "rust_analyzer" }
+local servers = { "jsonls", "rust_analyzer" }
 
 lsp_installer.setup({
 	ensure_installed = servers,
@@ -54,5 +54,32 @@ lspconfig.lua_ls.setup({
 				enable = false,
 			},
 		},
+	},
+})
+
+lspconfig.clangd.setup({
+	cmd = {
+		"clangd",
+		"--background-index",
+		"--query-driver=/usr/bin/clang*,/usr/bin/**/clang-*,/bin/clang,/bin/clang++,/usr/bin/gcc,/usr/bin/g++",
+		"--clang-tidy",
+		-- by default, clang-tidy use -checks=clang-diagnostic-*,clang-analyzer-*
+		-- to add more checks, create .clang-tidy file in the root directory
+		-- and add Checks key, see https://clang.llvm.org/extra/clang-tidy/
+		-- "--clang-tidy-checks=*",
+		"--all-scopes-completion",
+		"--cross-file-rename",
+		"--completion-style=detailed",
+		"--completion-parse=always",
+		"--include-ineligible-results",
+		"--function-arg-placeholders",
+		"--header-insertion-decorators",
+		"--header-insertion=iwyu",
+		"--pch-storage=memory",
+		"--limit-results=500",
+		"--use-dirty-headers",
+		--[[ "--malloc-trim", ]]
+		"--compile-commands-dir=../build/",
+		-- "-j=2",
 	},
 })
