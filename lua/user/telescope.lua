@@ -168,7 +168,7 @@ telescope.setup({
 		},
 		find_files = {
 			theme = "custom",
-			--[[ previewer = false, ]]
+			previewer = false,
 			path_display = { "absolute" },
 		},
 		-- Default configuration for builtin pickers goes here:
