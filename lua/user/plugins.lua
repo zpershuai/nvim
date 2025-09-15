@@ -45,6 +45,8 @@ return {
 	"neovim/nvim-lspconfig", -- enable LSP
 	--[[ "williamboman/nvim-lsp-installer", -- simple to use language server installer ]]
 	"williamboman/mason.nvim",
+	-- bridge mason and lspconfig to ensure servers get installed
+	"williamboman/mason-lspconfig.nvim",
 	"tamago324/nlsp-settings.nvim", -- language server settings defined in json for
 	"jose-elias-alvarez/null-ls.nvim", -- for formatters and linters
 
@@ -103,6 +105,9 @@ return {
 	},
 	"mhartington/formatter.nvim",
 
+	-- Modern formatter with Prettier/Prettierd and eslint_d integration
+	"stevearc/conform.nvim",
+
 	{
 		"NeogitOrg/neogit",
 		dependencies = {
@@ -128,5 +133,37 @@ return {
 			"rcarriga/nvim-notify",
 			"nvim-tree/nvim-web-devicons",
 		},
+	},
+
+	-- Word highlighting
+	{
+		"lfv89/vim-interestingwords",
+		keys = {
+			{ "<leader>yh", ":call InterestingWords('n')<CR>", mode = "n", silent = true, desc = "Highlight word (toggle)" },
+			{ "<leader>yH", ":call UncolorAllWords()<CR>", mode = "n", silent = true, desc = "Clear word highlights" },
+			{ "<leader>yc", ":call UncolorAllWords()<CR>", mode = "n", silent = true, desc = "Clear current file highlights" },
+		},
+		config = function()
+			-- Set up highlight colors
+			vim.cmd("highlight InterestingWord1 guibg=#3c3c3c gui=none")
+			vim.cmd("highlight InterestingWord2 guibg=#5c5c5c gui=none")
+			vim.cmd("highlight InterestingWord3 guibg=#7c7c7c gui=none")
+			vim.cmd("highlight InterestingWord4 guibg=#9c9c9c gui=none")
+			vim.cmd("highlight InterestingWord5 guibg=#bcbcbc gui=none")
+			vim.cmd("highlight InterestingWord6 guibg=#dcdcdc gui=none")
+			
+			-- Ensure colors persist after colorscheme changes
+			vim.api.nvim_create_autocmd("ColorScheme", {
+				pattern = "*",
+				callback = function()
+					vim.cmd("highlight InterestingWord1 guibg=#3c3c3c gui=none")
+					vim.cmd("highlight InterestingWord2 guibg=#5c5c5c gui=none")
+					vim.cmd("highlight InterestingWord3 guibg=#7c7c7c gui=none")
+					vim.cmd("highlight InterestingWord4 guibg=#9c9c9c gui=none")
+					vim.cmd("highlight InterestingWord5 guibg=#bcbcbc gui=none")
+					vim.cmd("highlight InterestingWord6 guibg=#dcdcdc gui=none")
+				end,
+			})
+		end,
 	},
 }

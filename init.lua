@@ -35,4 +35,7 @@ require("user.dired")
 
 require("user.formatter")
 
+-- modern formatter integration (Prettier/Prettierd/eslint_d)
+require("user.conform")
+
 require("user.leetcode")

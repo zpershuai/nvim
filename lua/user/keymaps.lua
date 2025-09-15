@@ -81,3 +81,52 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 -- keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
 -- keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 -- keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
+
+-- LSP convenience keys
+-- <leader>lf -> format (prefer conform, fallback to LSP)
+keymap("n", "<leader>lf", ":lua (function() local ok, conform = pcall(require, 'conform') if ok then conform.format({async = false, lsp_fallback = true}) else if vim.lsp.buf.format then vim.lsp.buf.format({ async = false }) else vim.lsp.buf.formatting() end end end)()<CR>", opts)
+
+-- <leader>li -> LSP info
+keymap("n", "<leader>li", ":LspInfo<CR>", opts)
+
+-- <leader>lj / <leader>lk -> next/prev diagnostic
+keymap("n", "<leader>lj", ":lua vim.diagnostic.goto_next({ float = { border = 'rounded' } })<CR>", opts)
+keymap("n", "<leader>lk", ":lua vim.diagnostic.goto_prev({ float = { border = 'rounded' } })<CR>", opts)
+
+-- Telescope keymaps
+keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
+keymap("n", "<leader>fg", ":Telescope live_grep<CR>", opts)
+keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
+keymap("n", "<leader>fh", ":Telescope help_tags<CR>", opts)
+keymap("n", "<leader>fr", ":Telescope oldfiles<CR>", opts)
+keymap("n", "<leader>fc", ":Telescope commands<CR>", opts)
+
+-- Git keymaps
+keymap("n", "<leader>gg", ":Neogit<CR>", opts)
+keymap("n", "<leader>gd", ":DiffviewOpen<CR>", opts)
+keymap("n", "<leader>gs", ":Gitsigns stage_hunk<CR>", opts)
+keymap("n", "<leader>gu", ":Gitsigns undo_stage_hunk<CR>", opts)
+keymap("n", "<leader>gp", ":Gitsigns preview_hunk<CR>", opts)
+keymap("n", "<leader>gb", ":Gitsigns blame_line<CR>", opts)
+
+-- File operations
+keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
+keymap("n", "<leader>E", ":NvimTreeFindFile<CR>", opts)
+
+-- Terminal
+keymap("n", "<leader>tt", ":ToggleTerm<CR>", opts)
+keymap("n", "<leader>tf", ":ToggleTerm direction=float<CR>", opts)
+keymap("n", "<leader>th", ":ToggleTerm direction=horizontal<CR>", opts)
+keymap("n", "<leader>tv", ":ToggleTerm direction=vertical<CR>", opts)
+
+-- Window management
+keymap("n", "<leader>wv", ":vsplit<CR>", opts)
+keymap("n", "<leader>ws", ":split<CR>", opts)
+keymap("n", "<leader>ww", ":wincmd w<CR>", opts)
+keymap("n", "<leader>wq", ":wincmd q<CR>", opts)
+
+-- Buffer management
+keymap("n", "<leader>bd", ":Bdelete<CR>", opts)
+keymap("n", "<leader>bn", ":bnext<CR>", opts)
+keymap("n", "<leader>bp", ":bprevious<CR>", opts)
+

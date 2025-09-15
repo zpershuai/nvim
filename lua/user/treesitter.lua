@@ -4,7 +4,11 @@ if not status_ok then
 end
 
 configs.setup({
-	ensure_installed = { "cpp", "c", "lua", "make", "cmake", "markdown", "objc", "json" }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+	ensure_installed = { 
+		"cpp", "c", "lua", "make", "cmake", "markdown", "objc", 
+		"json", "typescript", "javascript", "html", "css", 
+		"scss", "vue", "svelte", "tsx"
+	}, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
 	--[[ ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages ]]
 	sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
 	ignore_install = { "" }, -- List of parsers to ignore installing

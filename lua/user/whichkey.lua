@@ -268,7 +268,7 @@ local mappings = {
 	},
 	{ "<leader>wv", "<cmd>vsplit<CR>", desc = "split window to right", nowait = true, remap = false },
 
-	{ "<leader>y", group = "Jumps", nowait = true, remap = false },
+	{ "<leader>y", group = "highlight", nowait = true, remap = false },
 	{
 		"<leader>yA",
 		"<cmd>lua vim.diagnostic.setloclist()<CR>",
@@ -294,6 +294,9 @@ local mappings = {
 		remap = false,
 	},
 	{ "<leader>yx", "<cmd>lua vim.lsp.buf.definition()<CR>", desc = "Goto definition", nowait = true, remap = false },
+	{ "<leader>yh", desc = "Highlight word (toggle)", nowait = true, remap = false },
+	{ "<leader>yH", desc = "Clear word highlights", nowait = true, remap = false },
+	{ "<leader>yc", desc = "Clear current file highlights", nowait = true, remap = false },
 
 	{ "<leader>1", "<cmd>BufferGoto 1<cr>", desc = "Window 1", nowait = true, remap = false },
 	{ "<leader>2", "<cmd>BufferGoto 2<cr>", desc = "Window 2", nowait = true, remap = false },

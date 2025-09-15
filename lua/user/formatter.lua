@@ -1,7 +1,7 @@
 local status, formatter = pcall(require, "formatter")
 if not status then
-	vim.notify("没有找到 formatter")
-	return
+    vim.notify("没有找到 formatter")
+    return
 end
 
 local function clang_format()
@@ -91,16 +91,30 @@ vim.api.nvim_create_augroup("GitRootGroup", { clear = true })
 -- format on save
 -- 设置 BufEnter 自动命令
 vim.api.nvim_create_autocmd("BufWritePost", {
-	group = "GitRootGroup",
-	pattern = "*.js,*.rs,*.lua,*.md,*.MD,*.c,*.h,*.cpp,*.hpp,*.cc",
-	callback = function()
-		-- 检查仓库根目录是否存在所需文件
-		local git_root = check_git_root_for_file()
-		if git_root ~= nil then
-			-- 如果文件存在，执行相关的autocmd命令
-			-- 例如: 设置格式化快捷键
-			-- 这里替换为你需要执行的具体操作
-			vim.api.nvim_command("FormatWrite")
-		end
-	end,
+    group = "GitRootGroup",
+    pattern = "*.js,*.rs,*.lua,*.md,*.MD,*.c,*.h,*.cpp,*.hpp,*.cc,*.ts,*.json,*.html,*.css",
+    callback = function()
+        -- 检查仓库根目录是否存在所需文件
+        local git_root = check_git_root_for_file()
+        if git_root ~= nil then
+            -- 若可用，优先使用 conform，对 js/ts/html/json/css 使用 prettier/eslint_d
+            local ft = vim.bo.filetype
+            local prefers_conform = {
+                javascript = true,
+                javascriptreact = true,
+                typescript = true,
+                typescriptreact = true,
+                html = true,
+                json = true,
+                css = true,
+            }
+            local ok, conform = pcall(require, "conform")
+            if ok and prefers_conform[ft] then
+                conform.format({ async = false, lsp_fallback = true })
+            else
+                -- 其它按原 formatter.nvim 逻辑
+                vim.api.nvim_command("FormatWrite")
+            end
+        end
+    end,
 })

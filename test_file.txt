@@ -1,0 +1,9 @@
+This is a test file for word highlighting.
+
+You can test the highlighting functionality by:
+1. Placing your cursor on any word
+2. Pressing <Space> y h to highlight it
+3. Pressing <Space> y h again to unhighlight it
+4. Pressing <Space> y H to clear all highlights
+
+Try highlighting words like: test, word, highlighting, functionality, cursor, pressing, space, clear, all, highlights

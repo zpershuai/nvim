@@ -5,7 +5,8 @@
 
 local lspconfig = require("lspconfig")
 
-local servers = { "jsonls", "rust_analyzer" }
+-- Add desired servers here; settings live under lua/user/lsp/settings/
+local servers = { "ts_ls", "eslint", "html", "jsonls" }
 
 require("mason").setup({
     ui = {
@@ -17,21 +18,89 @@ require("mason").setup({
     }
 })
 
+-- Mason setup for package management
+require("mason").setup({
+    ui = {
+        icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗"
+        }
+    }
+})
+
+-- Manual LSP server setup without mason-lspconfig automatic installation
+
 --[[ lsp_installer.setup({ ]]
 --[[ 	automatic_installation = true, ]]
 --[[ }) ]]
 
-for _, server in pairs(servers) do
-	local opts = {
-		on_attach = require("user.lsp.handlers").on_attach,
-		capabilities = require("user.lsp.handlers").capabilities,
-	}
-	local has_custom_opts, server_custom_opts = pcall(require, "user.lsp.settings." .. server)
-	if has_custom_opts then
-		opts = vim.tbl_deep_extend("force", server_custom_opts, opts)
-	end
-	lspconfig[server].setup(opts)
+-- Setup servers (excluding ts_ls which is handled separately)
+local servers_to_setup = { "eslint", "html", "jsonls" }
+for _, server in pairs(servers_to_setup) do
+    local opts = {
+        on_attach = require("user.lsp.handlers").on_attach,
+        capabilities = require("user.lsp.handlers").capabilities,
+    }
+    local has_custom_opts, server_custom_opts = pcall(require, "user.lsp.settings." .. server)
+    if has_custom_opts then
+        opts = vim.tbl_deep_extend("force", server_custom_opts, opts)
+    end
+    lspconfig[server].setup(opts)
 end
+
+-- Setup ts_ls separately to avoid mason-lspconfig issues
+lspconfig.ts_ls.setup({
+    on_attach = require("user.lsp.handlers").on_attach,
+    capabilities = require("user.lsp.handlers").capabilities,
+    settings = {
+        typescript = {
+            inlayHints = {
+                includeInlayParameterNameHints = "all",
+                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                includeInlayFunctionParameterTypeHints = true,
+                includeInlayVariableTypeHints = true,
+                includeInlayPropertyDeclarationTypeHints = true,
+                includeInlayFunctionLikeReturnTypeHints = true,
+                includeInlayEnumMemberValueHints = true,
+            },
+            suggest = {
+                completeFunctionCalls = true,
+                includeCompletionsForImportStatements = true,
+                includeCompletionsWithSnippetText = true,
+            },
+            preferences = {
+                includePackageJsonAutoImports = "auto",
+                importModuleSpecifierPreference = "relative",
+            },
+        },
+        javascript = {
+            inlayHints = {
+                includeInlayParameterNameHints = "none",
+                includeInlayFunctionParameterTypeHints = true,
+                includeInlayVariableTypeHints = true,
+                includeInlayPropertyDeclarationTypeHints = true,
+                includeInlayFunctionLikeReturnTypeHints = true,
+            },
+            suggest = {
+                completeFunctionCalls = true,
+                includeCompletionsForImportStatements = true,
+                includeCompletionsWithSnippetText = true,
+            },
+            preferences = {
+                includePackageJsonAutoImports = "auto",
+                importModuleSpecifierPreference = "relative",
+            },
+        },
+    },
+    on_attach = function(client, bufnr)
+        -- Disable ts_ls formatting since we use conform/prettier
+        client.server_capabilities.document_formatting = false
+        client.server_capabilities.document_range_formatting = false
+        -- Call the default on_attach handler
+        require("user.lsp.handlers").on_attach(client, bufnr)
+    end,
+})
 
 lspconfig.lua_ls.setup({
 	-- disable formatting with `lua_ls` because using `stylua` in `null_ls`
