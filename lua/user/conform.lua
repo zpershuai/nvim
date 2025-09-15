@@ -17,7 +17,9 @@ local function has_eslint(root)
     "eslint.config.mjs",
   }
   for _, name in ipairs(candidates) do
-    if vim.loop.fs_stat((root or ".") .. "/" .. name) then
+    local file_path = (root or ".") .. "/" .. name
+    local stat = vim.loop.fs_stat(file_path)
+    if stat then
       return true
     end
   end
