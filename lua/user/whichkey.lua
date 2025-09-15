@@ -125,6 +125,9 @@ local mappings = {
 
 	{ "<leader>c", group = "Code", nowait = true, remap = false },
 	{ "<leader>cf", "<cmd>FormatWrite<cr>", desc = "Format", nowait = true, remap = false },
+	{ "<leader>co", desc = "Organize Imports", nowait = true, remap = false },
+	{ "<leader>cF", desc = "Fix All", nowait = true, remap = false },
+	{ "<leader>cR", desc = "Rename File", nowait = true, remap = false },
 
 	{ "<leader>d", group = "Directory", nowait = true, remap = false },
 	{ "<leader>dD", "<cmd>Telescope file_browser<cr>", desc = "Enter current Project", nowait = true, remap = false },
@@ -136,8 +139,13 @@ local mappings = {
 		remap = false,
 	},
 
+	{ "<leader>e", group = "Explorer", nowait = true, remap = false },
+	{ "<leader>eo", desc = "Oil Explorer", nowait = true, remap = false },
+
 	{ "<leader>f", group = "Files" }, -- group
 	{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find File", mode = "n" },
+	{ "<leader>fj", desc = "Flash Jump", nowait = true, remap = false },
+	{ "<leader>fJ", desc = "Flash Treesitter", nowait = true, remap = false },
 	{ "<leader>fs", "<cmd>w!<CR>", desc = "Save" },
 	{ "<leader>ft", "<cmd>NvimTreeToggle<CR>", desc = "Explorer" },
 	{ "<leader>fT", "<cmd>NvimTreeFocus<CR>", desc = "Explorer" },
@@ -203,12 +211,19 @@ local mappings = {
 	},
 	{ "<leader>pa", "<cmd>lua project_add_cwd()<cr>", desc = "add project", nowait = true, remap = false },
 	{ "<leader>pp", "<cmd>Telescope project<cr>", desc = "Find project", nowait = true, remap = false },
+	{ "<leader>pP", desc = "Telescope Projects", nowait = true, remap = false },
 
 	{ "<leader>q", group = "Quit", nowait = true, remap = false },
+	{ "<leader>qs", desc = "Restore Session", nowait = true, remap = false },
+	{ "<leader>ql", desc = "Restore Last Session", nowait = true, remap = false },
+	{ "<leader>qd", desc = "Don't Save Current Session", nowait = true, remap = false },
 	{ "<leader>qQ", "<cmd>qall!<CR>", desc = "quit all buffer", nowait = true, remap = false },
 	{ "<leader>qq", "<cmd>BufferClose<CR>", desc = "quit current buffer", nowait = true, remap = false },
 
-	{ "<leader>s", group = "Search", nowait = true, remap = false },
+	{ "<leader>s", group = "Search & Surround", nowait = true, remap = false },
+	{ "<leader>sa", desc = "Add surround (ys)", nowait = true, remap = false },
+	{ "<leader>sd", desc = "Delete surround (ds)", nowait = true, remap = false },
+	{ "<leader>sr", desc = "Replace surround (cs)", nowait = true, remap = false },
 	{ "<leader>sC", "<cmd>Telescope commands<cr>", desc = "Commands", nowait = true, remap = false },
 	{ "<leader>sM", "<cmd>Telescope man_pages<cr>", desc = "Man Pages", nowait = true, remap = false },
 	{ "<leader>sR", "<cmd>Telescope registers<cr>", desc = "Registers", nowait = true, remap = false },
@@ -233,7 +248,8 @@ local mappings = {
 		remap = false,
 	},
 
-	{ "<leader>t", group = "Terminal", nowait = true, remap = false },
+	{ "<leader>t", group = "Terminal & TODO", nowait = true, remap = false },
+	{ "<leader>tT", desc = "Todo Telescope", nowait = true, remap = false },
 	{ "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", desc = "Float", nowait = true, remap = false },
 	{
 		"<leader>th",
@@ -297,6 +313,17 @@ local mappings = {
 	{ "<leader>yh", desc = "Highlight word (toggle)", nowait = true, remap = false },
 	{ "<leader>yH", desc = "Clear word highlights", nowait = true, remap = false },
 	{ "<leader>yc", desc = "Clear current file highlights", nowait = true, remap = false },
+
+	{ "<leader>u", group = "UI", nowait = true, remap = false },
+	{ "<leader>un", desc = "Notification History", nowait = true, remap = false },
+	{ "<leader>ud", desc = "Dismiss Notifications", nowait = true, remap = false },
+	{ "<leader>uc", desc = "Toggle Colorizer", nowait = true, remap = false },
+
+	{ "<leader>x", group = "Diagnostics", nowait = true, remap = false },
+	{ "<leader>xx", desc = "Trouble Toggle", nowait = true, remap = false },
+	{ "<leader>xw", desc = "Workspace Diagnostics", nowait = true, remap = false },
+	{ "<leader>xd", desc = "Document Diagnostics", nowait = true, remap = false },
+	{ "<leader>xr", desc = "LSP References", nowait = true, remap = false },
 
 	{ "<leader>1", "<cmd>BufferGoto 1<cr>", desc = "Window 1", nowait = true, remap = false },
 	{ "<leader>2", "<cmd>BufferGoto 2<cr>", desc = "Window 2", nowait = true, remap = false },

@@ -1,4 +1,7 @@
-return {
+local plugins = {}
+
+-- Core plugins
+local core_plugins = {
 	"folke/which-key.nvim",
 	{ "folke/neoconf.nvim", cmd = "Neoconf" },
 	"folke/neodev.nvim",
@@ -6,14 +9,14 @@ return {
 	"nvim-lua/plenary.nvim", -- Useful lua functions used ny lots of plugins
 	"windwp/nvim-autopairs", -- Autopairs, integrates with both cmp and treesitter
 	"numToStr/Comment.nvim", -- Easily comment stuff
-	"kyazdani42/nvim-web-devicons",
-	"kyazdani42/nvim-tree.lua",
+	"nvim-tree/nvim-web-devicons", -- Updated from kyazdani42
+	"nvim-tree/nvim-tree.lua", -- Updated from kyazdani42
 
 	"moll/vim-bbye",
 	"nvim-lualine/lualine.nvim",
 	"akinsho/toggleterm.nvim",
 
-	"lewis6991/impatient.nvim",
+	-- Removed impatient.nvim - using vim.loader instead
 	"lukas-reineke/indent-blankline.nvim",
 	"goolord/alpha-nvim",
 	"antoinemadec/FixCursorHold.nvim", -- This is needed to fix lsp doc highlight
@@ -167,3 +170,33 @@ return {
 		end,
 	},
 }
+
+-- Merge all plugin modules
+local function merge_plugins(...)
+	local result = {}
+	for _, plugin_list in ipairs({...}) do
+		for _, plugin in ipairs(plugin_list) do
+			table.insert(result, plugin)
+		end
+	end
+	return result
+end
+
+-- Load modular plugin configurations
+local diagnostics_plugins = require("user.plugins.diagnostics")
+local ui_plugins = require("user.plugins.ui")
+local code_ts_plugins = require("user.plugins.code_ts")
+local editor_plugins = require("user.plugins.editor")
+local files_plugins = require("user.plugins.files")
+local session_plugins = require("user.plugins.session")
+
+-- Combine all plugins
+return merge_plugins(
+	core_plugins,
+	diagnostics_plugins,
+	ui_plugins,
+	code_ts_plugins,
+	editor_plugins,
+	files_plugins,
+	session_plugins
+)

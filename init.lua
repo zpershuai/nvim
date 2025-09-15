@@ -1,3 +1,6 @@
+-- Enable vim.loader for faster startup (replaces impatient.nvim)
+vim.loader.enable()
+
 require("user.options")
 require("user.keymaps")
 require("user.lazy")
@@ -16,7 +19,7 @@ require("user.nvim-tree")
 require("user.lualine")
 require("user.toggleterm")
 --[[ require "user.project" ]]
-require("user.impatient")
+-- require("user.impatient") -- Removed: using vim.loader instead
 require("user.indentline")
 require("user.alpha")
 require("user.whichkey")
