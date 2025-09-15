@@ -313,6 +313,8 @@ local mappings = {
 	{ "<leader>yh", desc = "Highlight word (toggle)", nowait = true, remap = false },
 	{ "<leader>yH", desc = "Clear word highlights", nowait = true, remap = false },
 	{ "<leader>yc", desc = "Clear current file highlights", nowait = true, remap = false },
+	{ "<leader>Y", desc = "Yank to system clipboard", nowait = true, remap = false },
+	{ "<leader>yY", desc = "Yank line to system clipboard", nowait = true, remap = false },
 
 	{ "<leader>u", group = "UI", nowait = true, remap = false },
 	{ "<leader>un", desc = "Notification History", nowait = true, remap = false },

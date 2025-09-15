@@ -42,3 +42,6 @@ require("user.formatter")
 require("user.conform")
 
 require("user.leetcode")
+
+-- Initialize clipboard system
+require("user.clipboard").init()

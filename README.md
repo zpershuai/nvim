@@ -99,6 +99,9 @@ This configuration includes a comprehensive set of plugins organized by function
 - [mini.nvim](docs/mini.md) - 轻量增强工具套件
 - [persistence.nvim](docs/persistence.md) - 会话管理
 
+### 系统集成
+- [clipboard](docs/clipboard.md) - 剪贴板系统（本地/SSH/tmux）
+
 ### 核心插件
 - **Lazy.nvim** - 插件管理器
 - **which-key.nvim** - 快捷键提示

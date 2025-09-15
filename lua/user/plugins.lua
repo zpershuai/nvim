@@ -189,6 +189,7 @@ local code_ts_plugins = require("user.plugins.code_ts")
 local editor_plugins = require("user.plugins.editor")
 local files_plugins = require("user.plugins.files")
 local session_plugins = require("user.plugins.session")
+local clipboard_plugins = require("user.plugins.clipboard")
 
 -- Combine all plugins
 return merge_plugins(
@@ -198,5 +199,6 @@ return merge_plugins(
 	code_ts_plugins,
 	editor_plugins,
 	files_plugins,
-	session_plugins
+	session_plugins,
+	clipboard_plugins
 )
