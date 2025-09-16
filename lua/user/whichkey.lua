@@ -146,6 +146,7 @@ local mappings = {
 	{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find File", mode = "n" },
 	{ "<leader>fj", desc = "Flash Jump", nowait = true, remap = false },
 	{ "<leader>fJ", desc = "Flash Treesitter", nowait = true, remap = false },
+	{ "<leader>fp", desc = "Preview fold", nowait = true, remap = false },
 	{ "<leader>fs", "<cmd>w!<CR>", desc = "Save" },
 	{ "<leader>ft", "<cmd>NvimTreeToggle<CR>", desc = "Explorer" },
 	{ "<leader>fT", "<cmd>NvimTreeFocus<CR>", desc = "Explorer" },
