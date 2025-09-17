@@ -7,23 +7,7 @@ return {
 			{ "<leader>sd", "ds", mode = "n", silent = true, desc = "Delete surround (ds)", noremap = false },
 			{ "<leader>sr", "cs", mode = "n", silent = true, desc = "Replace surround (cs)", noremap = false },
 		},
-		config = function()
-			require("nvim-surround").setup({
-				keymaps = {
-					insert = "<C-g>s",
-					insert_line = "<C-g>S",
-					normal = "ys",
-					normal_cur = "yss",
-					normal_line = "yS",
-					normal_cur_line = "ySS",
-					visual = "S",
-					visual_line = "gS",
-					delete = "ds",
-					change = "cs",
-					change_line = "cS",
-				},
-			})
-		end,
+		config = require("user.config.surround").setup,
 	},
 
 	-- Flash navigation
@@ -33,41 +17,7 @@ return {
 			{ "<leader>fj", "<cmd>Flash<cr>", mode = "n", silent = true, desc = "Flash Jump" },
 			{ "<leader>fJ", "<cmd>Flash Treesitter<cr>", mode = "n", silent = true, desc = "Flash Treesitter" },
 		},
-		config = function()
-			require("flash").setup({
-				modes = {
-					char = {
-						enabled = false,
-					},
-					treesitter = {
-						enabled = true,
-						disable = { "lazy", "fzf", "regex" },
-						debounce = 15,
-						multi_line = true,
-						label = {
-							before = true,
-							after = true,
-							style = "inline",
-						},
-						highlight = {
-							backdrop = false,
-							matches = false,
-						},
-						pattern = [[\b\w+]], -- ripgrep regex
-						action = function(match, state)
-							state:hide()
-							vim.api.nvim_win_set_cursor(0, { match.row, match.col + 1 })
-						end,
-						label = {
-							before = { 0, 0 },
-							after = { 0, -1 },
-							style = "inline",
-						},
-						keys = { "f", "F", "t", "T", ";", "," },
-					},
-				},
-			})
-		end,
+		config = require("user.config.flash").setup,
 	},
 
 	-- Mini.ai and Mini.operators

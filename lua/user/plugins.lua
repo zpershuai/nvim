@@ -185,7 +185,7 @@ end
 -- Load modular plugin configurations
 local diagnostics_plugins = require("user.plugins.diagnostics")
 local ui_plugins = require("user.plugins.ui")
-local code_ts_plugins = require("user.plugins.code_ts")
+local typescript_plugins = require("user.plugins.typescript")
 local editor_plugins = require("user.plugins.editor")
 local files_plugins = require("user.plugins.files")
 local session_plugins = require("user.plugins.session")
@@ -197,7 +197,7 @@ return merge_plugins(
 	core_plugins,
 	diagnostics_plugins,
 	ui_plugins,
-	code_ts_plugins,
+	typescript_plugins,
 	editor_plugins,
 	files_plugins,
 	session_plugins,
