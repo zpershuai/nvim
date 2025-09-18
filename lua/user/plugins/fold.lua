@@ -18,7 +18,7 @@ return {
 							break
 						end
 					end
-					
+
 					-- 如果有 LSP 折叠支持，优先使用 LSP，否则使用 treesitter
 					if has_lsp_fold then
 						return { "lsp", "treesitter" }
@@ -28,7 +28,19 @@ return {
 				end,
 				-- 确保标准折叠命令正常工作
 				open_fold_hl_timeout = 400,
-				close_fold_kinds = { "imports", "comment" },
+				close_fold_kinds_for_ft = {
+					default = { "imports", "comment" },
+					json = { "array" },
+					c = { "comment", "region" },
+					cpp = { "comment", "region" },
+					python = { "imports", "comment" },
+					lua = { "comment" },
+					java = { "imports", "comment" },
+					javascript = { "imports", "comment" },
+					typescript = { "imports", "comment" },
+					javascriptreact = { "imports", "comment" },
+					typescriptreact = { "imports", "comment" },
+				},
 				preview = {
 					win_config = {
 						border = { "", "─", "", "", "", "─", "", "" },
