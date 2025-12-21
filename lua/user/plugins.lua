@@ -141,11 +141,7 @@ local core_plugins = {
 	-- Word highlighting
 	{
 		"lfv89/vim-interestingwords",
-		keys = {
-			{ "<leader>yh", ":call InterestingWords('n')<CR>", mode = "n", silent = true, desc = "Highlight word (toggle)" },
-			{ "<leader>yH", ":call UncolorAllWords()<CR>", mode = "n", silent = true, desc = "Clear word highlights" },
-			{ "<leader>yc", ":call UncolorAllWords()<CR>", mode = "n", silent = true, desc = "Clear current file highlights" },
-		},
+		event = "VeryLazy",
 		config = function()
 			-- Set up highlight colors
 			vim.cmd("highlight InterestingWord1 guibg=#3c3c3c gui=none")
