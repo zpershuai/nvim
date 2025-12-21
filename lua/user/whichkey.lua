@@ -212,7 +212,6 @@ local mappings = {
 	},
 	{ "<leader>pa", "<cmd>lua project_add_cwd()<cr>", desc = "add project", nowait = true, remap = false },
 	{ "<leader>pp", "<cmd>Telescope project<cr>", desc = "Find project", nowait = true, remap = false },
-	{ "<leader>pP", desc = "Telescope Projects", nowait = true, remap = false },
 
 	{ "<leader>q", group = "Quit", nowait = true, remap = false },
 	{ "<leader>qs", desc = "Restore Session", nowait = true, remap = false },
@@ -228,6 +227,22 @@ local mappings = {
 	{ "<leader>sC", "<cmd>Telescope commands<cr>", desc = "Commands", nowait = true, remap = false },
 	{ "<leader>sM", "<cmd>Telescope man_pages<cr>", desc = "Man Pages", nowait = true, remap = false },
 	{ "<leader>sR", "<cmd>Telescope registers<cr>", desc = "Registers", nowait = true, remap = false },
+	{
+		"<leader>sf",
+		function()
+			local builtin = require("telescope.builtin")
+			local clients = vim.lsp.get_clients and vim.lsp.get_clients({ bufnr = 0 }) or vim.lsp.buf_get_clients(0)
+			if clients and next(clients) ~= nil then
+				builtin.lsp_document_symbols()
+			else
+				builtin.treesitter()
+			end
+		end,
+		desc = "Document Symbols",
+		nowait = true,
+		remap = false,
+	},
+	{ "<leader>sg", "<cmd>Telescope live_grep_args<cr>", desc = "Live Grep (Args)", nowait = true, remap = false },
 	{
 		"<leader>sS",
 		"<cmd>Telescope grep_string<CR>",
@@ -311,9 +326,36 @@ local mappings = {
 		remap = false,
 	},
 	{ "<leader>yx", "<cmd>lua vim.lsp.buf.definition()<CR>", desc = "Goto definition", nowait = true, remap = false },
-	{ "<leader>yh", desc = "Highlight word (toggle)", nowait = true, remap = false },
-	{ "<leader>yH", desc = "Clear word highlights", nowait = true, remap = false },
-	{ "<leader>yc", desc = "Clear current file highlights", nowait = true, remap = false },
+	{
+		"<leader>yh",
+		function()
+			require("lazy").load({ plugins = { "vim-interestingwords" } })
+			vim.cmd("call InterestingWords('n')")
+		end,
+		desc = "Highlight word (toggle)",
+		nowait = true,
+		remap = false,
+	},
+	{
+		"<leader>yH",
+		function()
+			require("lazy").load({ plugins = { "vim-interestingwords" } })
+			vim.cmd("call UncolorAllWords()")
+		end,
+		desc = "Clear word highlights",
+		nowait = true,
+		remap = false,
+	},
+	{
+		"<leader>yc",
+		function()
+			require("lazy").load({ plugins = { "vim-interestingwords" } })
+			vim.cmd("call UncolorAllWords()")
+		end,
+		desc = "Clear current file highlights",
+		nowait = true,
+		remap = false,
+	},
 	{ "<leader>Y", desc = "Yank to system clipboard", nowait = true, remap = false },
 	{ "<leader>yY", desc = "Yank line to system clipboard", nowait = true, remap = false },
 

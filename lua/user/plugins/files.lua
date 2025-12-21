@@ -97,9 +97,6 @@ return {
 	-- Project management
 	{
 		"ahmedkhalf/project.nvim",
-		keys = {
-			{ "<leader>pP", "<cmd>Telescope projects<cr>", mode = "n", silent = true, desc = "Telescope Projects" },
-		},
 		config = function()
 			require("project_nvim").setup({
 				detection_methods = { "lsp", "pattern" },
@@ -111,6 +108,11 @@ return {
 				scope_chdir = "global",
 				datapath = vim.fn.stdpath("data"),
 			})
+
+			local tele_status_ok, telescope = pcall(require, "telescope")
+			if tele_status_ok then
+				telescope.load_extension("projects")
+			end
 		end,
 	},
 }
