@@ -1,8 +1,3 @@
-local status_ok, _ = pcall(require, "lspconfig")
-if not status_ok then
-	return
-end
-
+-- LSP Configuration (using Neovim 0.11+ vim.lsp.config API)
 require("user.lsp.configs")
 require("user.lsp.handlers").setup()
---require "user.lsp.null-ls"
