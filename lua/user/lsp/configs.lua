@@ -1,12 +1,5 @@
---[[ local status_ok, lsp_installer = pcall(require, "nvim-lsp-installer") ]]
---[[ if not status_ok then ]]
---[[ 	return ]]
---[[ end ]]
-
-local lspconfig = require("lspconfig")
-
--- Add desired servers here; settings live under lua/user/lsp/settings/
-local servers = { "ts_ls", "eslint", "html", "jsonls" }
+-- LSP Configuration using Neovim 0.11+ vim.lsp.config API
+-- Migration from nvim-lspconfig to native vim.lsp.config
 
 require("mason").setup({
     ui = {
@@ -18,26 +11,8 @@ require("mason").setup({
     }
 })
 
--- Mason setup for package management
-require("mason").setup({
-    ui = {
-        icons = {
-            package_installed = "✓",
-            package_pending = "➜",
-            package_uninstalled = "✗"
-        }
-    }
-})
-
--- Manual LSP server setup without mason-lspconfig automatic installation
-
---[[ lsp_installer.setup({ ]]
---[[ 	automatic_installation = true, ]]
---[[ }) ]]
-
--- Setup servers (excluding ts_ls which is handled separately)
-local servers_to_setup = { "eslint", "html", "jsonls" }
-for _, server in pairs(servers_to_setup) do
+-- Helper function to merge custom settings from lua/user/lsp/settings/
+local function merge_settings(server)
     local opts = {
         on_attach = require("user.lsp.handlers").on_attach,
         capabilities = require("user.lsp.handlers").capabilities,
@@ -46,12 +21,23 @@ for _, server in pairs(servers_to_setup) do
     if has_custom_opts then
         opts = vim.tbl_deep_extend("force", server_custom_opts, opts)
     end
-    lspconfig[server].setup(opts)
+    return opts
 end
 
--- Setup ts_ls separately to avoid mason-lspconfig issues
-lspconfig.ts_ls.setup({
-    on_attach = require("user.lsp.handlers").on_attach,
+-- Configure servers using new vim.lsp.config API
+vim.lsp.config("eslint", merge_settings("eslint"))
+vim.lsp.config("html", merge_settings("html"))
+vim.lsp.config("jsonls", merge_settings("jsonls"))
+
+-- Configure ts_ls (TypeScript/JavaScript)
+vim.lsp.config("ts_ls", {
+    on_attach = function(client, bufnr)
+        -- Disable ts_ls formatting since we use conform/prettier
+        client.server_capabilities.document_formatting = false
+        client.server_capabilities.document_range_formatting = false
+        -- Call the default on_attach handler
+        require("user.lsp.handlers").on_attach(client, bufnr)
+    end,
     capabilities = require("user.lsp.handlers").capabilities,
     settings = {
         typescript = {
@@ -93,72 +79,56 @@ lspconfig.ts_ls.setup({
             },
         },
     },
-    on_attach = function(client, bufnr)
-        -- Disable ts_ls formatting since we use conform/prettier
+})
+
+-- Configure lua_ls
+vim.lsp.config("lua_ls", {
+    cmd = { "lua-language-server" },
+    root_dir = require("lspconfig.util").root_pattern(".luarc.json", ".luarc.jsonc", ".luacheckrc", ".stylua.toml", "stylua.toml", "git"),
+    on_attach = function(client, _)
+        -- Disable formatting with lua_ls because using stylua
         client.server_capabilities.document_formatting = false
         client.server_capabilities.document_range_formatting = false
-        -- Call the default on_attach handler
-        require("user.lsp.handlers").on_attach(client, bufnr)
     end,
+    capabilities = require("user.lsp.handlers").capabilities,
+    settings = {
+        Lua = {
+            format = {
+                enable = false,
+            },
+            runtime = {
+                version = "LuaJIT",
+            },
+            diagnostics = {
+                -- Get the language server to recognize the vim global
+                globals = { "vim", "P" },
+            },
+            telemetry = {
+                enable = false,
+            },
+        },
+    },
 })
 
-lspconfig.lua_ls.setup({
-	-- disable formatting with `lua_ls` because using `stylua` in `null_ls`
-	on_attach = function(client, _)
-		client.server_capabilities.document_formatting = false
-		client.server_capabilities.document_range_formatting = false
-	end,
-
-	root_dir = root_dir,
-	capabilities = capabilities,
-	settings = {
-		Lua = {
-			format = {
-				enable = false,
-			},
-			runtime = {
-				version = "LuaJIT",
-				-- Setup your lua path
-				-- path = runtime_path,
-			},
-			diagnostics = {
-				-- Get the language server to recognize the `vim` global
-				globals = { "vim", "P" },
-			},
-			-- workspace = {
-			--   -- Make the server aware of Neovim runtime files
-			--   library = vim.api.nvim_get_runtime_file("", true),
-			-- },
-			telemetry = {
-				enable = false,
-			},
-		},
-	},
-})
-
-lspconfig.clangd.setup({
-	cmd = {
-		"clangd",
-		"--background-index",
-		"--query-driver=/usr/bin/clang*,/usr/bin/**/clang-*,/bin/clang,/bin/clang++,/usr/bin/gcc,/usr/bin/g++",
-		"--clang-tidy",
-		-- by default, clang-tidy use -checks=clang-diagnostic-*,clang-analyzer-*
-		-- to add more checks, create .clang-tidy file in the root directory
-		-- and add Checks key, see https://clang.llvm.org/extra/clang-tidy/
-		-- "--clang-tidy-checks=*",
-		"--all-scopes-completion",
-		"--cross-file-rename",
-		"--completion-style=detailed",
-		"--completion-parse=always",
-		"--include-ineligible-results",
-		"--function-arg-placeholders",
-		"--header-insertion-decorators",
-		"--header-insertion=iwyu",
-		"--pch-storage=memory",
-		"--limit-results=500",
-		"--use-dirty-headers",
-		--[[ "--malloc-trim", ]]
-		"--compile-commands-dir=../build/",
-		-- "-j=2",
-	},
+-- Configure clangd (C/C++)
+vim.lsp.config("clangd", {
+    cmd = {
+        "clangd",
+        "--background-index",
+        "--query-driver=/usr/bin/clang*,/usr/bin/**/clang-*,/bin/clang,/bin/clang++,/usr/bin/gcc,/usr/bin/g++",
+        "--clang-tidy",
+        "--all-scopes-completion",
+        "--cross-file-rename",
+        "--completion-style=detailed",
+        "--completion-parse=always",
+        "--include-ineligible-results",
+        "--function-arg-placeholders",
+        "--header-insertion-decorators",
+        "--header-insertion=iwyu",
+        "--pch-storage=memory",
+        "--limit-results=500",
+        "--use-dirty-headers",
+        "--compile-commands-dir=../build/",
+    },
+    root_dir = require("lspconfig.util").root_pattern("compile_commands.json", "compile_flags.txt", ".git"),
 })
