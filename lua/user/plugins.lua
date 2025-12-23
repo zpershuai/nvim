@@ -187,6 +187,7 @@ local files_plugins = require("user.plugins.files")
 local session_plugins = require("user.plugins.session")
 local clipboard_plugins = require("user.plugins.clipboard")
 local fold_plugins = require("user.plugins.fold")
+local completion_plugins = require("user.plugins.completion")
 
 -- Combine all plugins
 return merge_plugins(
@@ -198,5 +199,6 @@ return merge_plugins(
 	files_plugins,
 	session_plugins,
 	clipboard_plugins,
-	fold_plugins
+	fold_plugins,
+	completion_plugins
 )
