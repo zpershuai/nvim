@@ -2,7 +2,7 @@
 return {
 	{
 		"supermaven-inc/supermaven-nvim",
-		event = "InsertEnter",
+		event = "VeryLazy",
 		config = function()
 			require("supermaven-nvim").setup({
 				color = {
@@ -12,7 +12,15 @@ return {
 				disable_keymaps = false,
 			})
 			-- Use free tier instead of Pro
-			vim.cmd("SupermavenUseFree")
+			-- Set up autocmd to run command after UI enters
+			vim.api.nvim_create_autocmd("UIEnter", {
+				once = true,
+				callback = function()
+					vim.defer_fn(function()
+						pcall(vim.cmd, "SupermavenUseFree")
+					end, 500)
+				end,
+			})
 		end,
 	},
 }
