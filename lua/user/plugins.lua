@@ -141,26 +141,35 @@ local core_plugins = {
 		"lfv89/vim-interestingwords",
 		event = "VeryLazy",
 		config = function()
-			-- Set up highlight colors
-			vim.cmd("highlight InterestingWord1 guibg=#3c3c3c gui=none")
-			vim.cmd("highlight InterestingWord2 guibg=#5c5c5c gui=none")
-			vim.cmd("highlight InterestingWord3 guibg=#7c7c7c gui=none")
-			vim.cmd("highlight InterestingWord4 guibg=#9c9c9c gui=none")
-			vim.cmd("highlight InterestingWord5 guibg=#bcbcbc gui=none")
-			vim.cmd("highlight InterestingWord6 guibg=#dcdcdc gui=none")
-			
-			-- Ensure colors persist after colorscheme changes
-			vim.api.nvim_create_autocmd("ColorScheme", {
-				pattern = "*",
-				callback = function()
-					vim.cmd("highlight InterestingWord1 guibg=#3c3c3c gui=none")
-					vim.cmd("highlight InterestingWord2 guibg=#5c5c5c gui=none")
-					vim.cmd("highlight InterestingWord3 guibg=#7c7c7c gui=none")
-					vim.cmd("highlight InterestingWord4 guibg=#9c9c9c gui=none")
-					vim.cmd("highlight InterestingWord5 guibg=#bcbcbc gui=none")
-					vim.cmd("highlight InterestingWord6 guibg=#dcdcdc gui=none")
-				end,
-			})
+			vim.g.interestingWordsGUIColors = {
+				"#E06C75",
+				"#E5C07B",
+				"#98C379",
+				"#56B6C2",
+				"#61AFEF",
+				"#C678DD",
+				"#D19A66",
+				"#FF7A88",
+				"#7FDBCA",
+				"#F4B393",
+				"#9A8CFF",
+				"#6DD3CE",
+			}
+			vim.g.interestingWordsTermColors = {
+				"204",
+				"214",
+				"114",
+				"44",
+				"75",
+				"141",
+				"173",
+				"203",
+				"80",
+				"215",
+				"69",
+				"176",
+			}
+			vim.g.interestingWordsRandomiseColors = 1
 		end,
 	},
 }
