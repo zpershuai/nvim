@@ -100,6 +100,7 @@ keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
 keymap("n", "<leader>fh", ":Telescope help_tags<CR>", opts)
 keymap("n", "<leader>fr", ":Telescope oldfiles<CR>", opts)
 keymap("n", "<leader>fc", ":Telescope commands<CR>", opts)
+keymap("n", "<leader>fs", ":Telescope luasnip<CR>", opts)
 
 -- Git keymaps
 keymap("n", "<leader>gg", ":Neogit<CR>", opts)
@@ -129,4 +130,3 @@ keymap("n", "<leader>wq", ":wincmd q<CR>", opts)
 keymap("n", "<leader>bd", ":Bdelete<CR>", opts)
 keymap("n", "<leader>bn", ":bnext<CR>", opts)
 keymap("n", "<leader>bp", ":bprevious<CR>", opts)
-

@@ -99,7 +99,6 @@ local core_plugins = {
 	"aserowy/tmux.nvim",
 
 	"romgrk/barbar.nvim",
-	"dstein64/vim-startuptime",
 	{
 		"X3eRo0/dired.nvim",
 		dependencies = {
@@ -187,6 +186,9 @@ local session_plugins = require("user.plugins.session")
 local clipboard_plugins = require("user.plugins.clipboard")
 local fold_plugins = require("user.plugins.fold")
 local completion_plugins = require("user.plugins.completion")
+local performance_plugins = require("user.plugins.performance")
+local snippets_plugins = require("user.plugins.snippets")
+local treesitter_plugins = require("user.plugins.treesitter")
 
 -- Combine all plugins
 return merge_plugins(
@@ -199,5 +201,8 @@ return merge_plugins(
 	session_plugins,
 	clipboard_plugins,
 	fold_plugins,
-	completion_plugins
+	completion_plugins,
+	performance_plugins,
+	snippets_plugins,
+	treesitter_plugins
 )

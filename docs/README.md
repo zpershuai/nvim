@@ -7,6 +7,10 @@ Contributor-facing references live here. Each plugin or integration gets its own
 - `noice.md`, `notify.md`, `flash.md` – UI enhancements and notification handling.
 - `project.md`, `oil.md` – project and file navigation helpers.
 - `todo-comments.md`, `trouble.md` – diagnostics workflow.
+- `performance.md` – startup and runtime profiling tools.
+- `leap-flit.md` – fast jumps and enhanced `f`/`t` motions.
+- `snippets.md` – snippet engine and Telescope picker.
+- `treesitter-ui.md` – rainbow delimiters and Treesitter context window.
 - `typescript-tools.md` – language server tuning for TypeScript/JavaScript.
 - `TESTING.md` – manual regression checklist referenced by the contributor guide.
 
