@@ -124,7 +124,7 @@ local mappings = {
 	{ "<leader>bp", "<cmd>BufferPick<cr>", desc = "Pick", nowait = true, remap = false },
 
 	{ "<leader>c", group = "Code", nowait = true, remap = false },
-	{ "<leader>cf", "<cmd>FormatWrite<cr>", desc = "Format", nowait = true, remap = false },
+	{ "<leader>cf", "<cmd>Format<cr>", desc = "Format", nowait = true, remap = false },
 	{ "<leader>co", desc = "Organize Imports", nowait = true, remap = false },
 	{ "<leader>cF", desc = "Fix All", nowait = true, remap = false },
 	{ "<leader>cR", desc = "Rename File", nowait = true, remap = false },

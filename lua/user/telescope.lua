@@ -237,6 +237,7 @@ require("telescope").load_extension("fzf")
 require("telescope").load_extension("ag")
 require("telescope").load_extension("vim_bookmarks")
 require("telescope").load_extension("live_grep_args")
+require("telescope").load_extension("luasnip")
 
 local _utils = require("telescope._extensions.project.utils")
 local _git = require("telescope._extensions.project.git")

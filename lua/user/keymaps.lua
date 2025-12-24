@@ -83,8 +83,8 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 -- keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
 -- LSP convenience keys
--- <leader>lf -> format (prefer conform, fallback to LSP)
-keymap("n", "<leader>lf", ":lua (function() local ok, conform = pcall(require, 'conform') if ok then conform.format({async = false, lsp_fallback = true}) else if vim.lsp.buf.format then vim.lsp.buf.format({ async = false }) else vim.lsp.buf.formatting() end end end)()<CR>", opts)
+-- <leader>lf -> format
+keymap("n", "<leader>lf", "<cmd>Format<cr>", opts)
 
 -- <leader>li -> LSP info
 keymap("n", "<leader>li", ":LspInfo<CR>", opts)
@@ -100,6 +100,7 @@ keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
 keymap("n", "<leader>fh", ":Telescope help_tags<CR>", opts)
 keymap("n", "<leader>fr", ":Telescope oldfiles<CR>", opts)
 keymap("n", "<leader>fc", ":Telescope commands<CR>", opts)
+keymap("n", "<leader>fs", ":Telescope luasnip<CR>", opts)
 
 -- Git keymaps
 keymap("n", "<leader>gg", ":Neogit<CR>", opts)
@@ -129,4 +130,3 @@ keymap("n", "<leader>wq", ":wincmd q<CR>", opts)
 keymap("n", "<leader>bd", ":Bdelete<CR>", opts)
 keymap("n", "<leader>bn", ":bnext<CR>", opts)
 keymap("n", "<leader>bp", ":bprevious<CR>", opts)
-

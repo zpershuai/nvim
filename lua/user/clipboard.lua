@@ -3,6 +3,12 @@
 
 local M = {}
 
+local function notify(message, level)
+  if vim.g.user_clipboard_notify == true then
+    vim.notify(message, level)
+  end
+end
+
 -- Environment detection
 local function is_ssh()
   return (os.getenv("SSH_CONNECTION") or os.getenv("SSH_TTY")) ~= nil
@@ -20,9 +26,9 @@ end
 function M.setup_local()
   if has_clipboard() then
     vim.o.clipboard = "unnamedplus"
-    vim.notify("Local clipboard enabled (unnamedplus)", vim.log.levels.INFO)
+    notify("Local clipboard enabled (unnamedplus)", vim.log.levels.INFO)
   else
-    vim.notify("System clipboard not available", vim.log.levels.WARN)
+    notify("System clipboard not available", vim.log.levels.WARN)
   end
 end
 
@@ -30,7 +36,7 @@ end
 function M.setup_osc52()
   local ok, osc52 = pcall(require, "osc52")
   if not ok then
-    vim.notify("OSC52 plugin not available", vim.log.levels.ERROR)
+    notify("OSC52 plugin not available", vim.log.levels.ERROR)
     return
   end
 
@@ -40,7 +46,7 @@ function M.setup_osc52()
     trim = true, -- Trim surrounding whitespaces before copy
   })
 
-  vim.notify("OSC52 clipboard enabled for SSH/tmux", vim.log.levels.INFO)
+  notify("OSC52 clipboard enabled for SSH/tmux", vim.log.levels.INFO)
 end
 
 -- Setup clipboard keybindings
@@ -115,7 +121,7 @@ function M.init()
     mode = is_remote and "OSC52" or "Local"
   }
   
-  vim.notify(
+  notify(
     string.format("Clipboard: %s (SSH:%s, TMUX:%s, CLIP:%s)", 
       env_info.mode, 
       env_info.ssh, 
