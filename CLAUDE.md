@@ -46,11 +46,18 @@ make deps
 ### Testing & Health Checks
 ```bash
 # Run comprehensive health check
-make check      # Runs deps + health
-make health     # Just :checkhealth
+make check       # Runs deps + health
+make health      # Just :checkhealth
+make lock        # Refresh lazy-lock.json with current plugin revisions
 
 # Performance profiling
 :StartupTime    # Requires vim-startuptime plugin
+```
+
+### Maintenance Commands
+```bash
+# Update lazy-lock.json after plugin changes
+make lock
 ```
 
 ## High-Level Architecture
@@ -68,8 +75,10 @@ make health     # Just :checkhealth
   - `ui.lua` - UI components (lualine, barbar, colorschemes)
 
 ### LSP Configuration
-- **Handler**: `lua/user/lsp/handlers.lua` - Common LSP event handlers
-- **Configs**: `lua/user/lsp/configs.lua` - Server setup and configuration
+- **API**: Uses Neovim 0.11+ native `vim.lsp.config` API (migrated from nvim-lspconfig)
+- **Entry**: `lua/user/lsp/init.lua` - LSP module loader
+- **Handlers**: `lua/user/lsp/handlers.lua` - Common LSP event handlers
+- **Configs**: `lua/user/lsp/configs.lua` - Server setup using vim.lsp.config
 - **Settings**: `lua/user/lsp/settings/` - Per-language server configurations
 - **Servers**: Uses Mason for installation, configured servers include:
   - `ts_ls` (TypeScript/JavaScript)
@@ -93,9 +102,19 @@ make health     # Just :checkhealth
 2. `lua/user/options.lua` - Basic Neovim options
 3. `lua/user/keymaps.lua` - Global key mappings
 4. `lua/user/lazy.lua` - Lazy.nvim configuration
-5. Plugin modules loaded from `lua/user/plugins/`
-6. LSP configuration from `lua/user/lsp/`
-7. UI and tool configurations
+5. Direct module loading (all loaded sequentially):
+   - Core: `colorscheme`, `cmp`, `lsp`, `nvim-web-devicons`, `telescope`, `treesitter`
+   - Editor: `autopairs`, `comment`, `gitsigns`, `nvim-tree`, `indentline`
+   - UI: `lualine`, `barbar`, `alpha`, `whichkey`
+   - Tools: `toggleterm`, `neogit`, `aerial`, `spectre`, `tmux`, `diffview`, `dired`
+   - Formatters: `formatter`, `conform`
+   - Special: `leetcode`, `clipboard.init()`
+   - Autocommands: `autocommands`
+
+### Module Loading Pattern
+- `init.lua` directly requires all modules in sequence
+- Plugin specs are organized in `lua/user/plugins/` by domain
+- LSP config uses new `vim.lsp.config` API (Neovim 0.11+)
 
 ### Special Features
 - **Clipboard**: OSC52 integration for SSH/tmux environments + local clipboard
