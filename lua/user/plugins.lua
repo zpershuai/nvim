@@ -2,7 +2,7 @@ local plugins = {}
 
 -- Core plugins
 local core_plugins = {
-	"folke/which-key.nvim",
+	  "folke/which-key.nvim",
 	{ "folke/neoconf.nvim", cmd = "Neoconf" },
 	"folke/neodev.nvim",
 	"nvim-lua/popup.nvim", -- An implementation of the Popup API from vim in Neovim
@@ -106,7 +106,6 @@ local core_plugins = {
 			"MunifTanjim/nui.nvim",
 		},
 	},
-	"mhartington/formatter.nvim",
 
 	-- Modern formatter with Prettier/Prettierd and eslint_d integration
 	"stevearc/conform.nvim",

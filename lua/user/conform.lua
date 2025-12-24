@@ -3,98 +3,63 @@ if not ok then
   return
 end
 
--- Detect eslint config presence
-local function has_eslint(root)
-  local candidates = {
-    ".eslintrc",
-    ".eslintrc.js",
-    ".eslintrc.cjs",
-    ".eslintrc.json",
-    ".eslintrc.yaml",
-    ".eslintrc.yml",
-    "eslint.config.js",
-    "eslint.config.cjs",
-    "eslint.config.mjs",
-  }
-  for _, name in ipairs(candidates) do
-    local file_path = (root or ".") .. "/" .. name
-    local stat = vim.loop.fs_stat(file_path)
-    if stat then
-      return true
-    end
-  end
-  return false
-end
-
 conform.setup({
   notify_on_error = true,
   format_on_save = false,
   formatters_by_ft = {
-    javascript = function(bufnr)
-      local root = require("conform.util").root_file({
-        ".git",
-        "package.json",
-        ".eslintrc",
-        "eslint.config.js",
-      }, bufnr)
-      if has_eslint(root) then
-        return { "eslint_d", "prettierd", "prettier" }
-      end
-      return { "prettierd", "prettier" }
-    end,
-    javascriptreact = function(bufnr)
-      local root = require("conform.util").root_file({
-        ".git",
-        "package.json",
-        ".eslintrc",
-        "eslint.config.js",
-      }, bufnr)
-      if has_eslint(root) then
-        return { "eslint_d", "prettierd", "prettier" }
-      end
-      return { "prettierd", "prettier" }
-    end,
-    typescript = function(bufnr)
-      local root = require("conform.util").root_file({
-        ".git",
-        "package.json",
-        ".eslintrc",
-        "eslint.config.js",
-      }, bufnr)
-      if has_eslint(root) then
-        return { "eslint_d", "prettierd", "prettier" }
-      end
-      return { "prettierd", "prettier" }
-    end,
-    typescriptreact = function(bufnr)
-      local root = require("conform.util").root_file({
-        ".git",
-        "package.json",
-        ".eslintrc",
-        "eslint.config.js",
-      }, bufnr)
-      if has_eslint(root) then
-        return { "eslint_d", "prettierd", "prettier" }
-      end
-      return { "prettierd", "prettier" }
-    end,
-    html = { "prettierd", "prettier" },
-    json = { "prettierd", "prettier" },
-    css = { "prettierd", "prettier" },
-    scss = { "prettierd", "prettier" },
-    less = { "prettierd", "prettier" },
-    vue = { "prettierd", "prettier" },
-    svelte = { "prettierd", "prettier" },
+    lua = { "stylua" },
+    rust = { "rustfmt" },
+    c = { "clang-format" },
+    cpp = { "clang-format" },
+    markdown = { "prettier" },
+    md = { "prettier" },
+    javascript = { "prettier" },
+    javascriptreact = { "prettier" },
+    typescript = { "prettier" },
+    typescriptreact = { "prettier" },
+    html = { "prettier" },
+    json = { "prettier" },
+    css = { "prettier" },
+    scss = { "prettier" },
+    less = { "prettier" },
+    vue = { "prettier" },
+    svelte = { "prettier" },
   },
   formatters = {
-    eslint_d = {
-      command = "eslint_d",
-      args = { "--fix-to-stdout", "--stdin", "--stdin-filename", "$FILENAME" },
-      stdin = true,
-      cwd = require("conform.util").root_file({ ".git", "package.json", ".eslintrc", "eslint.config.js" }),
-      exit_codes = { 0, 1 }, -- eslint_d returns 1 when warnings are present
+    stylua = {
+      prepend_args = { "--search-parent-directories" },
+    },
+    ["clang-format"] = {
+      prepend_args = { "--style=Google" },
     },
   },
+})
+
+-- Check if .zpcode.format exists in git root (for project-specific format on save)
+local function check_zpcode_format_flag()
+  local git_root = vim.fn.systemlist("git rev-parse --show-toplevel")[1]
+  if vim.v.shell_error ~= 0 then
+    return false
+  end
+  git_root = git_root:gsub("%s+", "")
+
+  local format_file = git_root .. "/.zpcode.format"
+  local f = io.open(format_file, "r")
+  if f ~= nil then
+    io.close(f)
+    return true
+  end
+  return false
+end
+
+-- Auto-format on save (only when .zpcode.format flag exists)
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*",
+  callback = function()
+    if check_zpcode_format_flag() then
+      conform.format({ async = false, lsp_fallback = true })
+    end
+  end,
 })
 
 -- Optional: user command for convenience

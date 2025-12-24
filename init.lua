@@ -36,7 +36,8 @@ require("user.diffview")
 require("user.barbar")
 require("user.dired")
 
-require("user.formatter")
+-- Unified format module
+require("user.format")
 
 -- modern formatter integration (Prettier/Prettierd/eslint_d)
 require("user.conform")
