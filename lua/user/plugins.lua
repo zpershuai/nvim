@@ -81,7 +81,6 @@ local core_plugins = {
 	"stevearc/aerial.nvim",
 	"vijaymarupudi/nvim-fzf",
 	"editorconfig/editorconfig-vim",
-	"iamcco/markdown-preview.nvim",
 	"ThePrimeagen/git-worktree.nvim",
 	"nvim-pack/nvim-spectre",
 	"pelodelfuego/vim-swoop",
@@ -198,6 +197,7 @@ local completion_plugins = require("user.plugins.completion")
 local performance_plugins = require("user.plugins.performance")
 local snippets_plugins = require("user.plugins.snippets")
 local treesitter_plugins = require("user.plugins.treesitter")
+local markdown_plugins = require("user.plugins.markdown")
 
 -- Combine all plugins
 return merge_plugins(
@@ -213,5 +213,6 @@ return merge_plugins(
 	completion_plugins,
 	performance_plugins,
 	snippets_plugins,
-	treesitter_plugins
+	treesitter_plugins,
+	markdown_plugins
 )
