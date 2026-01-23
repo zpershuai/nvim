@@ -39,32 +39,70 @@ end
 vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
 
 local Terminal = require("toggleterm.terminal").Terminal
-local lazygit = Terminal:new({ cmd = "lazygit", hidden = true })
+
+-- Configuration: Set to false to suppress warnings for missing tools
+local SHOW_MISSING_TOOL_WARNINGS = true
+
+-- Helper function to create terminal with executable check
+local function create_safe_terminal(cmd, name)
+	if vim.fn.executable(cmd) ~= 1 then
+		if SHOW_MISSING_TOOL_WARNINGS then
+			vim.notify(
+				string.format("⚠️  %s is not installed or not in PATH.\nSkipping %s terminal setup.", cmd, name),
+				vim.log.levels.WARN
+			)
+		end
+		return nil
+	end
+	return Terminal:new({ cmd = cmd, hidden = true })
+end
+
+-- Safely create terminal instances with executable checks
+-- Comment out tools you don't need to avoid warnings
+local lazygit = create_safe_terminal("lazygit", "LazyGit")
+local node = create_safe_terminal("node", "Node")
+-- local ncdu = create_safe_terminal("ncdu", "NCDU")  -- Uncomment if you install ncdu
+local htop = create_safe_terminal("htop", "Htop")
+-- local python = create_safe_terminal("python", "Python")  -- Uncomment if you install python
 
 function _LAZYGIT_TOGGLE()
-	lazygit:toggle()
+	if lazygit then
+		lazygit:toggle()
+	else
+		vim.notify("LazyGit is not available. Install it first: https://github.com/jesseduffield/lazygit", vim.log.levels.ERROR)
+	end
 end
-
-local node = Terminal:new({ cmd = "node", hidden = true })
 
 function _NODE_TOGGLE()
-	node:toggle()
+	if node then
+		node:toggle()
+	else
+		vim.notify("Node.js is not available. Install it from: https://nodejs.org/", vim.log.levels.ERROR)
+	end
 end
 
-local ncdu = Terminal:new({ cmd = "ncdu", hidden = true })
-
-function _NCDU_TOGGLE()
-	ncdu:toggle()
-end
-
-local htop = Terminal:new({ cmd = "htop", hidden = true })
+-- Uncomment if you install ncdu
+-- function _NCDU_TOGGLE()
+-- 	if ncdu then
+-- 		ncdu:toggle()
+-- 	else
+-- 		vim.notify("NCDU is not available. Install it with your package manager.", vim.log.levels.ERROR)
+-- 	end
+-- end
 
 function _HTOP_TOGGLE()
-	htop:toggle()
+	if htop then
+		htop:toggle()
+	else
+		vim.notify("Htop is not available. Install it with your package manager.", vim.log.levels.ERROR)
+	end
 end
 
-local python = Terminal:new({ cmd = "python", hidden = true })
-
-function _PYTHON_TOGGLE()
-	python:toggle()
-end
+-- Uncomment if you install python
+-- function _PYTHON_TOGGLE()
+-- 	if python then
+-- 		python:toggle()
+-- 	else
+-- 		vim.notify("Python is not available. Install it from: https://www.python.org/", vim.log.levels.ERROR)
+-- 	end
+-- end

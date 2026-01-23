@@ -23,6 +23,7 @@ require("user.toggleterm")
 require("user.indentline")
 require("user.alpha")
 require("user.whichkey")
+require("user.healthcheck")  -- Health check keybindings
 require("user.autocommands")
 require("user.aerial")
 require("user.spectre")
