@@ -1,6 +1,14 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-	vim.fn.system({
+	-- Security notice: First-time installation
+	vim.notify(
+		"Lazy.nvim not found. Installing from GitHub...\n"
+			.. "Source: https://github.com/folke/lazy.nvim.git\n"
+			.. "Please ensure you are on a secure network connection.",
+		vim.log.levels.WARN
+	)
+
+	local result = vim.fn.system({
 		"git",
 		"clone",
 		"--filter=blob:none",
@@ -8,6 +16,17 @@ if not vim.loop.fs_stat(lazypath) then
 		"--branch=stable", -- latest stable release
 		lazypath,
 	})
+
+	-- Verify installation success
+	if vim.v.shell_error ~= 0 then
+		vim.notify(
+			"Failed to clone lazy.nvim:\n" .. result .. "\nPlease check your network connection and try again.",
+			vim.log.levels.ERROR
+		)
+		return
+	end
+
+	vim.notify("Lazy.nvim installed successfully!", vim.log.levels.INFO)
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -28,6 +47,11 @@ require("lazy").setup("user.plugins", {
 		missing = true,
 		-- try to load one of these colorschemes when starting an installation during startup
 		colorscheme = { "habamax" },
+	},
+	-- Security: Display detailed change information during updates
+	change_detection = {
+		enabled = true,
+		notify = true, -- Show notification when plugins change
 	},
 	ui = {
 		-- a number <1 is a percentage., >1 is a fixed size
@@ -82,3 +106,16 @@ require("lazy").setup("user.plugins", {
 		notify = false,
 	},
 })
+
+-- Security reminder: Display warning about reviewing plugin updates
+vim.api.nvim_create_user_command("LazyUpdateSecure", function()
+	vim.notify(
+		"⚠️  Security Reminder:\n"
+			.. "1. Review lazy-lock.json git diff after update\n"
+			.. "2. Check changelogs for major version changes\n"
+			.. "3. Be cautious with build hooks in new plugins\n"
+			.. "\nProceed with :Lazy update",
+		vim.log.levels.WARN
+	)
+	vim.cmd("Lazy update")
+end, { desc = "Update plugins with security reminder" })
