@@ -34,6 +34,8 @@ local options = {
 	sidescrolloff = 8,
 	guifont = "monospace:h17", -- the font used in graphical neovim applications
 	laststatus = 3,
+	wildmenu = true, -- enable native cmdline completion menu
+	wildmode = "longest:full,full", -- cycle matches and show menu
 }
 
 vim.opt.shortmess:append("c")

@@ -147,7 +147,21 @@ cmp.setup.cmdline("?", {
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(":", {
-	mapping = cmp.mapping.preset.cmdline(),
+	mapping = cmp.mapping.preset.cmdline({
+		["<Tab>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.confirm({ select = true })
+			else
+				cmp.complete()
+			end
+		end, { "c" }),
+		["<CR>"] = cmp.mapping(function(fallback)
+			fallback()
+		end, { "c" }),
+	}),
+	completion = {
+		autocomplete = { cmp.TriggerEvent.TextChanged },
+	},
 	sources = cmp.config.sources({
 		{ name = "cmdline" },
 	}, {
