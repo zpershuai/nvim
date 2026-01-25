@@ -11,27 +11,23 @@ local opts = { noremap = true, silent = true }
 -- Method 2: Which-key integration (recommended)
 local ok, wk = pcall(require, "which-key")
 if ok then
-	wk.register({
-		["<leader>h"] = {
-			name = "󰓙 Health",
-			h = { "<cmd>checkhealth<cr>", "Full Health Check" },
-			l = { "<cmd>checkhealth lsp<cr>", "LSP Health" },
-			t = { "<cmd>checkhealth telescope<cr>", "Telescope Health" },
-			m = { "<cmd>checkhealth mason<cr>", "Mason Health" },
-			c = { "<cmd>checkhealth nvim-cmp<cr>", "Completion Health" },
-			g = { "<cmd>checkhealth treesitter<cr>", "Treesitter Health" },
-			v = { "<cmd>checkhealth vim.lsp<cr>", "Vim LSP Health" },
-			s = { "<cmd>checkhealth vim.treesitter<cr>", "Vim Treesitter Health" },
-		},
+	wk.add({
+		{ "<leader>h", group = "󰓙 Health" },
+		{ "<leader>hh", "<cmd>checkhealth<cr>", desc = "Full Health Check" },
+		{ "<leader>hl", "<cmd>checkhealth lsp<cr>", desc = "LSP Health" },
+		{ "<leader>ht", "<cmd>checkhealth telescope<cr>", desc = "Telescope Health" },
+		{ "<leader>hm", "<cmd>checkhealth mason<cr>", desc = "Mason Health" },
+		{ "<leader>hc", "<cmd>checkhealth nvim-cmp<cr>", desc = "Completion Health" },
+		{ "<leader>hg", "<cmd>checkhealth treesitter<cr>", desc = "Treesitter Health" },
+		{ "<leader>hv", "<cmd>checkhealth vim.lsp<cr>", desc = "Vim LSP Health" },
+		{ "<leader>hs", "<cmd>checkhealth vim.treesitter<cr>", desc = "Vim Treesitter Health" },
 	})
 
 	-- Alternative: Single key mapping
 	-- If <leader>h is already used, you can use a different prefix
-	wk.register({
-		["<leader>C"] = {
-			name = "󰓙 Check",
-			h = { "<cmd>checkhealth<cr>", "Health Check" },
-		},
+	wk.add({
+		{ "<leader>C", group = "󰓙 Check" },
+		{ "<leader>Ch", "<cmd>checkhealth<cr>", desc = "Health Check" },
 	})
 else
 	-- Fallback if which-key is not available
