@@ -102,14 +102,6 @@ keymap("n", "<leader>fr", ":Telescope oldfiles<CR>", opts)
 keymap("n", "<leader>fc", ":Telescope commands<CR>", opts)
 keymap("n", "<leader>fs", ":Telescope luasnip<CR>", opts)
 
--- Git keymaps
-keymap("n", "<leader>gg", ":Neogit<CR>", opts)
-keymap("n", "<leader>gd", ":DiffviewOpen<CR>", opts)
-keymap("n", "<leader>gs", ":Gitsigns stage_hunk<CR>", opts)
-keymap("n", "<leader>gu", ":Gitsigns undo_stage_hunk<CR>", opts)
-keymap("n", "<leader>gp", ":Gitsigns preview_hunk<CR>", opts)
-keymap("n", "<leader>gb", ":Gitsigns blame_line<CR>", opts)
-
 -- File operations
 keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 keymap("n", "<leader>E", ":NvimTreeFindFile<CR>", opts)
