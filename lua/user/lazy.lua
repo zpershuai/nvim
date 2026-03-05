@@ -33,6 +33,9 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy so your mappings are correct
 
 require("lazy").setup("user.plugins", {
+	rocks = {
+		enabled = false,
+	},
 	defaults = { lazy = true },
 	install = { colorscheme = { "tokyonight" } },
 	checker = {

@@ -11,6 +11,8 @@ require("mason").setup({
     }
 })
 
+require("user.config.mason_tools").setup()
+
 -- Helper function to merge custom settings from lua/user/lsp/settings/
 local function merge_settings(server)
     local opts = {

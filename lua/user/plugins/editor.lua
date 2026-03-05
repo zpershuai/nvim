@@ -98,7 +98,8 @@ return {
 
 	-- Leap navigation
 	{
-		"ggandor/leap.nvim",
+		name = "leap.nvim",
+		url = "https://codeberg.org/andyg/leap.nvim",
 		event = "VeryLazy",
 		config = require("user.config.leap").setup,
 	},
@@ -107,7 +108,7 @@ return {
 	{
 		"ggandor/flit.nvim",
 		event = "VeryLazy",
-		dependencies = { "ggandor/leap.nvim" },
+		dependencies = { "leap.nvim" },
 		config = require("user.config.flit").setup,
 	},
 }

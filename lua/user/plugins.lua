@@ -50,6 +50,7 @@ local core_plugins = {
 	"williamboman/mason.nvim",
 	-- bridge mason and lspconfig to ensure servers get installed
 	"williamboman/mason-lspconfig.nvim",
+	"WhoIsSethDaniel/mason-tool-installer.nvim",
 	"tamago324/nlsp-settings.nvim", -- language server settings defined in json for
 	"jose-elias-alvarez/null-ls.nvim", -- for formatters and linters
 
