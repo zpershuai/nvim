@@ -166,6 +166,7 @@ local mappings = {
 	{ "<leader>gl", "<cmd>Gitsigns blame<cr>", desc = "Blame", nowait = true, remap = false },
 	{ "<leader>gj", "<cmd>lua require 'gitsigns'.next_hunk()<cr>", desc = "Next Hunk", nowait = true, remap = false },
 	{ "<leader>gk", "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", desc = "Prev Hunk", nowait = true, remap = false },
+    { "<leader>lg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", desc = "LazyGit", nowait = true, remap = false },
 	{
 		"<leader>gp",
 		"<cmd>lua require 'gitsigns'.preview_hunk()<cr>",
