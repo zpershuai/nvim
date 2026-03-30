@@ -11,7 +11,7 @@ Contributor-facing references live here. Each plugin or integration gets its own
 - `leap-flit.md` – fast jumps and enhanced `f`/`t` motions.
 - `snippets.md` – snippet engine and Telescope picker.
 - `treesitter-ui.md` – rainbow delimiters and Treesitter context window.
-- `typescript-tools.md` – language server tuning for TypeScript/JavaScript.
+- `typescript-tools.md` – `ts_ls` setup and TypeScript/JavaScript workspace actions.
 - `TESTING.md` – manual regression checklist referenced by the contributor guide.
 
 ## When Adding Docs
