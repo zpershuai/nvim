@@ -206,7 +206,9 @@ local mappings = {
 	{ "<leader>p", group = "Projects", nowait = true, remap = false },
 	{
 		"<leader>pA",
-		"<cmd>lua project_add_cwd(vim.loop.cwd())<cr>",
+		function()
+			project_add_cwd(vim.uv.cwd())
+		end,
 		desc = "add current pwd",
 		nowait = true,
 		remap = false,
@@ -232,7 +234,7 @@ local mappings = {
 		"<leader>sf",
 		function()
 			local builtin = require("telescope.builtin")
-			local clients = vim.lsp.get_clients and vim.lsp.get_clients({ bufnr = 0 }) or vim.lsp.buf_get_clients(0)
+			local clients = vim.lsp.get_clients({ bufnr = 0 })
 			if clients and next(clients) ~= nil then
 				builtin.lsp_document_symbols()
 			else

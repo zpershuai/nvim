@@ -4,7 +4,13 @@ require("telescope.themes").get_custom = function(opts)
 end
 
 local ivy_theme = require("telescope.themes").get_ivy({})
-vim.cmd([[autocmd User TelescopePreviewerLoaded setlocal number]])
+
+vim.api.nvim_create_autocmd("User", {
+	pattern = "TelescopePreviewerLoaded",
+	callback = function()
+		vim.opt_local.number = true
+	end,
+})
 
 local status_ok, telescope = pcall(require, "telescope")
 if not status_ok then

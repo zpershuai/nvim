@@ -1,10 +1,10 @@
 local opts = { noremap = true, silent = true }
 
 -- Shorten function name
-local keymap = vim.api.nvim_set_keymap
+local keymap = vim.keymap.set
 
 --Remap space as leader key
-keymap("", "<Space>", "<Nop>", opts)
+keymap({ "n", "v", "s", "o" }, "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -22,9 +22,9 @@ keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
-keymap("", "<C-g>", "<C-c>", opts)
-keymap("", "<C-a>", "<Home>", opts)
-keymap("", "<C-e>", "<End>", opts)
+keymap({ "n", "i", "v", "x", "s", "o", "c", "t" }, "<C-g>", "<C-c>", opts)
+keymap({ "n", "i", "v", "x", "s", "o", "c", "t" }, "<C-a>", "<Home>", opts)
+keymap({ "n", "i", "v", "x", "s", "o", "c", "t" }, "<C-e>", "<End>", opts)
 --keymap("n", '<leader>->', ":BufferLineCloseRight", opts)
 --keymap("n", "<leader>-<", ":BufferLineCloseLeft", opts)
 keymap("n", "<leader><leader>", ":Telescope commands<CR>", opts)

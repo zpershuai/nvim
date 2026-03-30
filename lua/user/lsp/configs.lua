@@ -210,7 +210,7 @@ vim.lsp.config("ts_ls", {
 -- Configure lua_ls
 vim.lsp.config("lua_ls", {
     cmd = { "lua-language-server" },
-    root_dir = require("lspconfig.util").root_pattern(".luarc.json", ".luarc.jsonc", ".luacheckrc", ".stylua.toml", "stylua.toml", "git"),
+    root_markers = { ".luarc.json", ".luarc.jsonc", ".luacheckrc", ".stylua.toml", "stylua.toml", ".git" },
     on_attach = function(client, _)
         -- Disable formatting with lua_ls because using stylua
         disable_formatting(client)
@@ -255,7 +255,7 @@ vim.lsp.config("clangd", {
         "--use-dirty-headers",
         "--compile-commands-dir=../build/",
     },
-    root_dir = require("lspconfig.util").root_pattern("compile_commands.json", "compile_flags.txt", ".git"),
+    root_markers = { "compile_commands.json", "compile_flags.txt", ".git" },
 })
 
 for _, server in ipairs({ "eslint", "html", "jsonls", "ts_ls", "lua_ls", "clangd" }) do

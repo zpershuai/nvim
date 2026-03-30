@@ -187,7 +187,13 @@ local opts = {
 		commands = {
 			Format = {
 				function()
-					vim.lsp.buf.range_formatting({}, { 0, 0 }, { vim.fn.line("$"), 0 })
+					vim.lsp.buf.format({
+						async = false,
+						range = {
+							["start"] = { 0, 0 },
+							["end"] = { vim.fn.line("$"), 0 },
+						},
+					})
 				end,
 			},
 		},
