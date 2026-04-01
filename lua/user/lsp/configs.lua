@@ -157,14 +157,29 @@ local function ts_on_attach(client, bufnr)
 end
 
 -- Configure servers using new vim.lsp.config API
-vim.lsp.config("eslint", merge_settings("eslint"))
-vim.lsp.config("html", merge_settings("html"))
-vim.lsp.config("jsonls", merge_settings("jsonls"))
+vim.lsp.config("eslint", vim.tbl_deep_extend("force", merge_settings("eslint"), {
+    filetypes = {
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "vue",
+        "svelte",
+        "astro",
+    },
+}))
+vim.lsp.config("html", vim.tbl_deep_extend("force", merge_settings("html"), {
+    filetypes = { "html", "templ" },
+}))
+vim.lsp.config("jsonls", vim.tbl_deep_extend("force", merge_settings("jsonls"), {
+    filetypes = { "json", "jsonc" },
+}))
 
 -- Configure ts_ls (TypeScript/JavaScript)
 vim.lsp.config("ts_ls", {
     on_attach = ts_on_attach,
     capabilities = require("user.lsp.handlers").capabilities,
+    filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
     settings = {
         typescript = {
             inlayHints = {
@@ -210,6 +225,7 @@ vim.lsp.config("ts_ls", {
 -- Configure lua_ls
 vim.lsp.config("lua_ls", {
     cmd = { "lua-language-server" },
+    filetypes = { "lua" },
     root_markers = { ".luarc.json", ".luarc.jsonc", ".luacheckrc", ".stylua.toml", "stylua.toml", ".git" },
     on_attach = function(client, _)
         -- Disable formatting with lua_ls because using stylua
@@ -255,6 +271,7 @@ vim.lsp.config("clangd", {
         "--use-dirty-headers",
         "--compile-commands-dir=../build/",
     },
+    filetypes = { "c", "cpp", "objc", "objcpp" },
     root_markers = { "compile_commands.json", "compile_flags.txt", ".git" },
 })
 
